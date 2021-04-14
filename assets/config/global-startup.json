@@ -1,0 +1,35 @@
+{
+    "whatsappSuporteNumero" : "+5524998340040",
+    "whatsappSuporteMsg" : "Olá! Tenho dúvida a respeito deste aplicativo. Poderia me ajudar?",
+    "ambienteAtivo" : "HMG",
+    "ambientesDisponiveis" : [
+      {
+        "ambiente" : "PRD",
+        "versao" : "1.2.1.20191027.1324",
+        "gateway" : "http://www.junta10.com/php/classes/gateway",
+        "gatewayssl" : "https://www.junta10.com/php/classes/gateway",
+        "upload"  : "https://www.junta10.com/php/classes/upload",
+        "home" : "http://www.junta10.com",
+        "homeimg" : "http://www.junta10.com/img"
+      },
+      {
+        "ambiente" : "HMG",
+        "versao" : "1.3.1.2.20210403.1018",
+        "gateway" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
+        "gatewayssl" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
+        "upload"  : "http://www.elitefinanceira.com/cfdi/php/classes/upload",
+        "home" : "http://www.elitefinanceira.com",
+        "homeimg" : "http://www.elitefinanceira.com/img"
+      },
+      {
+        "ambiente" : "DSV",
+        "versao" : "1.3.0.30032021.1031",
+        "gateway" : "http://192.168.0.49/cfdi/php/classes/gateway",
+        "gatewayssl" : "http://192.168.0.49/cfdi/php/classes/gateway",
+        "upload"  : "http://192.168.0.49/cfdi/php/classes/upload",
+        "home" : "http://192.168.0.49",
+        "homeimg" : "http://192.168.0.49/img"
+      }
+    ]
+  
+}
