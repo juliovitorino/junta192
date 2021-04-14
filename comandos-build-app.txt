@@ -13,3 +13,4 @@ flutter build apk --release
 
 Como é a resolução de conflito de código que ele usa... essa linha é pra manter.
 vou continuar ...
+todo dia um investimento pra você. (linha alterada no mac)
