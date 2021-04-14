@@ -10,5 +10,5 @@ flutter build apk --split-per-abi --release
 # construir release
 flutter build apk --release
 
-
+#vou colocar um comentário aqui
 todo dia um investimento pra você. (linha alterada no mac)
