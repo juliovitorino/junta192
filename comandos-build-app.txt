@@ -10,5 +10,6 @@ flutter build apk --split-per-abi --release
 # construir release
 flutter build apk --release
 
-#fiz essa modificação no ambiente mac pra testar o commit e o push
-#pra depois fazer checkout lá no ambiente windows
+
+Como é a resolução de conflito de código que ele usa... essa linha é pra manter.
+vou continuar ...
