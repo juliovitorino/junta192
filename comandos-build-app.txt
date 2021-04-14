@@ -10,12 +10,9 @@ flutter build apk --split-per-abi --release
 # construir release
 flutter build apk --release
 
-<<<<<<< HEAD
 #vou colocar um comentário aqui
 todo dia um investimento pra você. (linha alterada no mac)
-=======
 
 Como é a resolução de conflito de código que ele usa... essa linha é pra manter.
 vou continuar ...
 todo dia um investimento pra você. (linha alterada no mac)
->>>>>>> e76e692e5194b59c62c0fd2f57607324b9458fa0
