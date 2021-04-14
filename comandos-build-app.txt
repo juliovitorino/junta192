@@ -10,9 +10,5 @@ flutter build apk --split-per-abi --release
 # construir release
 flutter build apk --release
 
-#vou colocar um comentário aqui
-todo dia um investimento pra você. (linha alterada no mac)
+essa modificacao é somente na versao IOS 
 
-Como é a resolução de conflito de código que ele usa... essa linha é pra manter.
-vou continuar ...
-todo dia um investimento pra você. (linha alterada no mac)
