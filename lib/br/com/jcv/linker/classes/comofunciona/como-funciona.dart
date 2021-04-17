@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:junta192/br/com/jcv/linker/classes/style/asset.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-assistente.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/model/modelAssistente.dart';
