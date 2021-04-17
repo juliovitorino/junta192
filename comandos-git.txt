@@ -1,0 +1,10 @@
+
+
+>> mostrar o status do git remoto e local
+$ git remote show origin
+
+>> criar um branch local com base em outro
+$ git checkout -b <branch-novo-a-ser-criado> <branch-local-usado-como-ref>
+
+>> para configurar o branch remoto com o branch local:
+$ git branch --set-upstream-to=origin/<branch-remoto> <seu-branch-local>

@@ -33,6 +33,21 @@ class _CommonAssistenteState extends State<CommonAssistente> {
             : Image.network(widget.lst[0].urlimg);
   }
 
+  _changePageBack() {
+    if(index == 0){
+      index = widget.lst.length;
+    }
+    setState(() {
+      _titulo = widget.lst[--index].titulo;
+      _descricao = widget.lst[index].descricao;
+      _img = widget.lst[index].islocal == true
+            ? Image.asset(widget.lst[index].urlimg)
+            : Image.network(widget.lst[index].urlimg);
+    });
+
+  }
+
+
   _changePageItem() {
     if(index == (widget.lst.length-1)){
       index = -1;
@@ -85,6 +100,14 @@ class _CommonAssistenteState extends State<CommonAssistente> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              TextButton(
+                child: Text("ANTERIOR"),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white)
+                ),
+                onPressed: _changePageBack,
+              ),
               FlatButton(
                 onPressed: _changePageItem,
                 color: Colors.blue,
