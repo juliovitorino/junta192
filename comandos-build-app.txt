@@ -1,8 +1,16 @@
-﻿#compilar apk tamanho cheio
+﻿
+                    _           _     _ 
+    /\             | |         (_)   | |
+   /  \   _ __   __| |_ __ ___  _  __| |
+  / /\ \ | '_ \ / _` | '__/ _ \| |/ _` |
+ / ____ \| | | | (_| | | | (_) | | (_| |
+/_/    \_\_| |_|\__,_|_|  \___/|_|\__,_|
+
+#compilar apk tamanho cheio
 flutter build apk --no-shrink
 
 #construir release dividir arquivos da build
-#gera arquivos de menor tamanho 
+#gera arquivos de menor tamanho
 #melhor para distribuição na playstore
 flutter build apk --split-per-abi --no-shrink --release
 flutter build apk --split-per-abi --release
@@ -10,5 +18,13 @@ flutter build apk --split-per-abi --release
 # construir release
 flutter build apk --release
 
-essa modificacao é somente na versao IOS 
-
+ _  ____   _____ 
+(_)/ __ \ / ____|
+ _| |  | | (___  
+| | |  | |\___ \ 
+| | |__| |____) |
+|_|\____/|_____/ 
+                 
+#compilar a release para instalar no iphone
+flutter build IOS
+flutter install -d <id-do-telefone>
