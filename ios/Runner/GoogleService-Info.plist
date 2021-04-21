@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>925268136033-n50aa6o7odl55gk4kpfo1ficqt3fnb3e.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.925268136033-n50aa6o7odl55gk4kpfo1ficqt3fnb3e</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>925268136033-1ol3jkp8tjr9uncs9k688idr30mc2mrf.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBqJDp_uSVx81SzXYtt-no4nweeOn8BqwU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>925268136033</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>jcv.com.br.junta10</string>
+	<key>PROJECT_ID</key>
+	<string>junta10-a48c7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>junta10-a48c7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:925268136033:ios:1f697d7001e9581f741a20</string>
+	<key>DATABASE_URL</key>
+	<string>https://junta10-a48c7.firebaseio.com</string>
+</dict>
+</plist>
