@@ -100,26 +100,44 @@ class _CommonAssistenteState extends State<CommonAssistente> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              TextButton(
-                child: Text("ANTERIOR"),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white)
+
+              index == (widget.lst.length-1)
+              ? Container(height: 0, width: 0,)
+              : TextButton(
+                  onPressed: _changePageBack,
+                  child: Text("ANTERIOR"),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white)
+                  ),
                 ),
-                onPressed: _changePageBack,
-              ),
-              FlatButton(
-                onPressed: _changePageItem,
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: Text("PRÓXIMO"),
-              ),
-              FlatButton(
+
+              index == (widget.lst.length-1) 
+              ? Container(height: 0, width: 0,)
+              : TextButton(
+                  onPressed: _changePageItem,
+                  child: Text("PRÓXIMO"),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white)
+                  ),
+                ),
+
+              TextButton(
                 onPressed: index == (widget.lst.length-1) ? (){
                   Navigator.of(context).pop();
                 } : null,
                 child: Text("ENTENDI"),
+                style: ButtonStyle(
+                  backgroundColor:  index == (widget.lst.length-1) 
+                                    ? MaterialStateProperty.all<Color>(Colors.green)
+                                    : MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor:  index == (widget.lst.length-1) 
+                                    ? MaterialStateProperty.all<Color>(Colors.white)
+                                    : MaterialStateProperty.all<Color>(Colors.black38),
+                ),
               ),
+                 
             ],
           ),
         ),

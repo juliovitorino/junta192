@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -52,16 +54,11 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
     _token = CacheSession().getSession()['tokenid'];
     _urlControlador = GlobalStartup().getGateway() + "/";
 
-
     MobileAds.instance.initialize().then((status) {
-
         print("inicialização do AdMob feita: ${status.adapterStatuses}");
-
       }
     );
-
   }  
-
   void _carimboClick(){
     setState(() {
         _checking = true;
@@ -232,6 +229,7 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
