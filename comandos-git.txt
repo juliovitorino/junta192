@@ -11,3 +11,7 @@ $ git branch --set-upstream-to=origin/<branch-remoto> <seu-branch-local>
 
 >> fazer um push para um branch especifico no remoto
 $ git push origin HEAD:<branch-remoto>  
+
+>> trocar de branch
+$ git checkout -q <nome-do-branch>
+$ git switch <nome-do-branch>  ### depende da versão do git
