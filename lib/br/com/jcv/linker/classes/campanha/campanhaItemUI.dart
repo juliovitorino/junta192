@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -144,8 +145,9 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
           : widget._campanhafull['contadorCartoes'] / widget._campanhafull['maximoCartoes'] * 100;
     Widget rodape = new Container(
       padding: EdgeInsets.only(left: 8.0),
-      child: Center(child: new Text(widget._campanhafull['recompensa'].toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),)
+      child: Center(child: new AutoSizeText(widget._campanhafull['recompensa'].toString(),
+                      style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+                      maxLines: 2,)
       )
     );
     

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -93,7 +94,10 @@ class _CampanhaPageState extends State<CampanhaPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFF0F4C3),
       appBar: new AppBar(
-        title: Text("Gerenciador de Campanha", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),),
+        title: AutoSizeText("Gerenciador de Campanha", 
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+                maxLines: 1,
+                ),
         centerTitle: true,
         backgroundColor: Colors.amber,
 
