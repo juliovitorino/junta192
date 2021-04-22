@@ -14,7 +14,7 @@ class AjudaComoEntregarRecompensa extends StatelessWidget {
     ..addAssistentePageItem(new AssistenteModel(imgAjudaCCCPasso[1]
       , 'Vá em suas campanhas', 'Clique no menu Minhas Campanhas'))      
     ..addAssistentePageItem(new AssistenteModel(imgAjudaEntregarRecompensa
-      , 'Inicie a Entrega', 'Localize a campanha que está ativa e CLIQUE na opção ENTREGAR RECOMPENSA'))
+      , 'Inicie a Entrega', 'CLIQUE na opção ENTREGAR RECOMPENSA'))
     ..addAssistentePageItem(new AssistenteModel( imgAjudaCodigoResgate 
       , 'Peça o Código de Resgate', 'Peça o Código de Resgate ao cliente para fazer A VALIDAÇÃO e liberação da recompensa. '))
     ..addAssistentePageItem(new AssistenteModel( imgAjudaValidarCartao 
