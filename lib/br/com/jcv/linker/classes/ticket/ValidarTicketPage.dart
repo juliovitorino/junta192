@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -340,8 +339,9 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                       onPressed: _comoFuncionaClick ,
                       child: Padding(
                         padding: EdgeInsets.all(5.0),
-                        child: Text("Clique aqui e veja como funciona", 
-                                style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                        child: AutoSizeText("Clique aqui e veja como funciona", 
+                                style: TextStyle(color: Colors.white, fontSize: 18.0),
+                                maxLines: 1),
                       ),
                       color: Colors.blue
                     )
