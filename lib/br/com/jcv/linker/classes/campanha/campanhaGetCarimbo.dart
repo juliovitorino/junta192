@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -124,8 +125,10 @@ void _carimboClick(BuildContext context){
                                 onPressed: (){_carimboClick(context);} ,
                                 child: Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("Liberar Novo Carimbo", 
-                                          style: TextStyle(color: Colors.white, fontSize: 25.0)),
+                                  child: AutoSizeText("Liberar Novo Carimbo", 
+                                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                                          maxLines: 1,
+                                          ),
                                 ),
                                 color: Colors.green
                               )
