@@ -101,7 +101,7 @@ class _CommonAssistenteState extends State<CommonAssistente> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
 
-              index == (widget.lst.length-1)
+              (index == (widget.lst.length-1) || index == 0)
               ? Container(height: 0, width: 0,)
               : TextButton(
                   onPressed: _changePageBack,
