@@ -28,3 +28,4 @@ flutter build apk --release
 #compilar a release para instalar no iphone
 flutter build IOS
 flutter install -d <id-do-telefone>
+#
