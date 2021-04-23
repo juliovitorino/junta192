@@ -5,12 +5,12 @@
     "ambientesDisponiveis" : [
       {
         "ambiente" : "PRD",
-        "versao" : "1.2.1.20191027.1324",
-        "gateway" : "http://www.junta10.com/php/classes/gateway",
-        "gatewayssl" : "https://www.junta10.com/php/classes/gateway",
-        "upload"  : "https://www.junta10.com/php/classes/upload",
-        "home" : "http://www.junta10.com",
-        "homeimg" : "http://www.junta10.com/img"
+        "versao" : "1.3.13.5.20210423.1230",
+        "gateway" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",
+        "gatewayssl" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",
+        "upload"  : "http://elitefinanceira.com/producao/cfdi/php/classes/upload",
+        "home" : "http://elitefinanceira.com/producao/cfdi",
+        "homeimg" : "http://elitefinanceira.com/producao/cfdi/img"
       },
       {
         "ambiente" : "HMG",
