@@ -47,6 +47,9 @@ print("GlobalStartup._internal() => 3")    ;
     return await rootBundle.loadString(glsArquivo);
   }
 
+  String getAmbienteAtivo() {
+    return _jsonsession[glsAmbienteAtivo];
+  }
   
   String getWhatsappSuporteNumero() {
     return _jsonsession[glswhatsappSuporteNumero];
