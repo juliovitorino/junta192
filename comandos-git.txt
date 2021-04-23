@@ -15,3 +15,7 @@ $ git push origin HEAD:<branch-remoto>
 >> fazer uma overwrite de algum arquivo do repositorio em cima do local
 git <seu-branch-local> 
 git checkout <origin/[branch-remoto]> path/to/file
+
+>> fazer merge de um branch para outro
+git <seu-branch-local-receptor> 
+git merge <seu-branch-local-de-mudancas>
