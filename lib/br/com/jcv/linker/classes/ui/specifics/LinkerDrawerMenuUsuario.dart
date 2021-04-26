@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -105,6 +106,7 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                                         GlobalStartup().getwhatsappSuporteMsg()
                                 ),
                                 null),
+              new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
               //new LinkerListTile(Icons.group, 'Indique um amigo', ()=>{},null),
               //new LinkerListTile(Icons.person, 'Meu Perfil', ()=>{},null),
               //new LinkerListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{},null),

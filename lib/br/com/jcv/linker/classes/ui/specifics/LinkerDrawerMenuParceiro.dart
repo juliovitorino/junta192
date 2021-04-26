@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 import 'package:junta192/br/com/jcv/linker/classes/campanha/campanhaPage.dart';
+import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-image-circle.dart';
@@ -100,6 +101,8 @@ class _LinkerDrawerMenuParceiroState extends State<LinkerDrawerMenuParceiro> {
               new LinkerListTile(Icons.group, 'Indique um amigo', ()=>{},null),
               new LinkerListTile(Icons.person, 'Meu Perfil', ()=>{},null),
               new LinkerListTile(Icons.settings, 'Preferências', ()=>{},null),
+              new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
+
               new Padding(
               padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
               child: new Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:junta192/br/com/jcv/linker/classes/home/LoginLinker.dart';
+import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage.dart';
 
 class LinkerDrawerMenuAdmin extends StatelessWidget
@@ -37,6 +38,7 @@ class LinkerDrawerMenuAdmin extends StatelessWidget
                 )
               ),
               new LinkerListTile(Icons.settings, 'Preferências', ()=>{},null),
+              new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
               new LinkerListTile(Icons.exit_to_app
                 , 'Sair'
                 , ()=>(new SessionStorage()).deleteSession()
