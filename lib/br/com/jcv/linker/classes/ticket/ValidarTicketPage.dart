@@ -261,7 +261,7 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                             return Container(
                               width: _bannerAd.getBanner().size.width.toDouble(),
                               height: _bannerAd.getBanner().size.height.toDouble(),
-                              color: Colors.blueGrey,
+                              color: Colors.white,
                               child: child,
                             );
                           },
