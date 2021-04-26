@@ -4,7 +4,7 @@
     "ambienteAtivo" : "PRD",
     "ambientesDisponiveis" : [
       {
-        "ambiente" : "HMG",
+        "ambiente" : "PRD",
         "versao" : "1.3.13.5.20210423.1230",
         "gateway" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",
         "gatewayssl" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",

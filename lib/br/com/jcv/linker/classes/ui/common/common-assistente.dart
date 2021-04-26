@@ -112,6 +112,19 @@ class _CommonAssistenteState extends State<CommonAssistente> {
                   ),
                 ),
 
+              TextButton(
+                onPressed: index == (widget.lst.length-1) ? (){
+                  Navigator.of(context).pop();
+                } : null,
+                child: Text("ENTENDI"),
+                style: ButtonStyle(
+                  backgroundColor:  index == (widget.lst.length-1) 
+                                    ? MaterialStateProperty.all<Color>(Colors.green)
+                                    : MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor:  MaterialStateProperty.all<Color>(Colors.white),
+                ),
+              ),
+
               index == (widget.lst.length-1) 
               ? Container(height: 0, width: 0,)
               : TextButton(
@@ -123,20 +136,6 @@ class _CommonAssistenteState extends State<CommonAssistente> {
                   ),
                 ),
 
-              TextButton(
-                onPressed: index == (widget.lst.length-1) ? (){
-                  Navigator.of(context).pop();
-                } : null,
-                child: Text("ENTENDI"),
-                style: ButtonStyle(
-                  backgroundColor:  index == (widget.lst.length-1) 
-                                    ? MaterialStateProperty.all<Color>(Colors.green)
-                                    : MaterialStateProperty.all<Color>(Colors.white),
-                  foregroundColor:  index == (widget.lst.length-1) 
-                                    ? MaterialStateProperty.all<Color>(Colors.white)
-                                    : MaterialStateProperty.all<Color>(Colors.black38),
-                ),
-              ),
                  
             ],
           ),
