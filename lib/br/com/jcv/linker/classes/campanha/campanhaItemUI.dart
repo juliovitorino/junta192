@@ -48,7 +48,7 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
   }
 
   Future<Map> _criarCarimbosCampanha(int id) async {
-    String url='${_urlControlador}appCriarCarimbosPorId.php?tokenid=${_token}&camp=${id}';
+    String url='${_urlControlador}appCriarCarimbosPorId.php?tokenid=$_token&camp=$id';
     http.Response response = await http.get(Uri.parse(url));
     return json.decode(response.body);
   }
@@ -98,6 +98,7 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
                         )
                   );
 
+    // Opções do Admin
     if(widget._campanhafull['status'] == 'A' ){
       _lstToolbar.add(new LinkerDataItemBottom(Icons.edit, "Editar", pageAction: new CampanhaPageEdit(widget._campanhafull)));
 
@@ -133,8 +134,15 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
       _btnAction = new Container(width: 0, height: 0,);
     }
 
+    // Opções disponiveis somente para usuário membros e premium
+    if(    ( CacheSession().getSession()['tipousuario'] == "C" )
+        && ( CacheSession().getSession()['isGratuito'] == '0' )
+        || ( CacheSession().getSession()['tipousuario'] == "P" )
+    ){
+      _lstToolbar.add(new LinkerDataItemBottom(Icons.offline_bolt, "Performance", pageAction: new CampanhaPerformancePage(widget._campanhafull)));
+    }
+    
     _lstToolbar.add(new LinkerDataItemBottom(Icons.info, "Detalhes", pageAction: new CampanhaDetailPage(widget._campanhafull)));
-    _lstToolbar.add(new LinkerDataItemBottom(Icons.offline_bolt, "Performance", pageAction: new CampanhaPerformancePage(widget._campanhafull)));
     _lstToolbar.add(new LinkerDataItemBottom(Icons.record_voice_over, "Comentários", pageAction: new CampanhaComentariosPage(widget._campanhafull, isShowImage: true)));
     _lstToolbar.add(new LinkerDataItemBottom(Icons.people, "Participantes", pageAction: new CampanhaParticipantesPage(widget._campanhafull)));
     double _percmetacarimbos = int.parse(widget._campanhafull['totalCarimbos']) == 0

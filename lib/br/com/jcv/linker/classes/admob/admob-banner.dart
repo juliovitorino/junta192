@@ -12,7 +12,7 @@ class AdMobBanner<T> implements AdMobCustomFactory<T> {
   @override
   T getBanner() {
     _bannerad = (BannerAd(
-      adUnitId: GlobalStartup().getAmbienteAtivo() == "PRD" ? AdMobCustomFactory.bannerAdUnitID : BannerAd.testAdUnitId,
+      adUnitId: GlobalStartup().getAmbienteAtivo() == "DSV" ? BannerAd.testAdUnitId : AdMobCustomFactory.bannerAdUnitID ,
       size: AdSize.banner,
       request: AdRequest(),
       listener: AdListener(
