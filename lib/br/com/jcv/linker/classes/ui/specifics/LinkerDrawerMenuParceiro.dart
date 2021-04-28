@@ -11,6 +11,7 @@ import 'package:junta192/br/com/jcv/linker/classes/usuariocashback/UsuarioCashba
 import 'package:junta192/br/com/jcv/linker/classes/usuariocashback/UsuarioCashbackQRCodeIDCliente.dart';
 import 'package:junta192/br/com/jcv/linker/classes/usuariopublicidade/UsuarioPublicidadePage.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share/share.dart';
 
 class  LinkerDrawerMenuParceiro extends StatefulWidget {
   // Cria uma SessionStorage pra verifica arquivo de sessão de login
@@ -101,6 +102,15 @@ class _LinkerDrawerMenuParceiroState extends State<LinkerDrawerMenuParceiro> {
               new LinkerListTile(Icons.group, 'Indique um amigo', ()=>{},null),
               new LinkerListTile(Icons.person, 'Meu Perfil', ()=>{},null),
               new LinkerListTile(Icons.settings, 'Preferências', ()=>{},null),
+              new LinkerListTile(Icons.share_outlined, 
+                                "Compartilhe com Clientes", 
+                                () async => {
+                                    await Share.share("Compartilhe com seus amigos o Junta10. Para instalar no seu aparelho baixe pelo link http://bit.ly/junta10",
+                                                      subject: "Compartilhe com amigos e clientes"
+                                                     )
+                                }, 
+                                null),
+
               new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
 
               new Padding(

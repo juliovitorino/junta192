@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share/share.dart';
 
 import 'package:junta192/br/com/jcv/linker/classes/campanha/campanhaPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
@@ -105,6 +104,23 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                                         GlobalStartup().getWhatsappSuporteNumero(),
                                         GlobalStartup().getwhatsappSuporteMsg()
                                 ),
+                                null),
+              new LinkerListTile(Icons.share_outlined, 
+                                "Compartilhe com Amigos", 
+                                () async {
+                                    final StringBuffer sb = new StringBuffer();
+                                    sb.writeln("Olá essa é uma mensagem enviada pelo");
+                                    sb.writeln("seu amigo *$_nomeusuario* que está te convidando para se juntar ao aplicativo *Junta10*");
+                                    sb.writeln("e começar a *GANHAR VANTAGENS* no comércio da região.");
+                                    sb.writeln(" ");
+                                    sb.writeln("Para instalar no seu aparelho baixe pelo link abaixo:");
+                                    sb.writeln(" ");
+                                    sb.writeln("Android -> http://bit.ly/junta10");
+                                    sb.writeln("iPhone *em breve*");
+                                    await Share.share( sb.toString(),
+                                                      subject: "Compartilhe com amigos e clientes"
+                                                     );
+                                }, 
                                 null),
               new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
               //new LinkerListTile(Icons.group, 'Indique um amigo', ()=>{},null),

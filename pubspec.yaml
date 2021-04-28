@@ -46,6 +46,7 @@ dependencies:
   whatsapp_unilink: ^1.0.0+1
   google_mobile_ads: ^0.12.1
   auto_size_text: ^2.1.0
+  share: ^2.0.1
 
 dev_dependencies:
   flutter_test:
