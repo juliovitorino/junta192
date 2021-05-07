@@ -1,0 +1,16 @@
+Configuração IOS
+================
+Cdigo App id -> ca-app-pub-1205119990657394~6088590924
+
+iOS BannerAd       UnidId -> ca-app-pub-1205119990657394/6362661313
+iOS IntersticialAd UnidId -> ca-app-pub-1205119990657394/1820781071
+iOS RewardAd       UnidId -> ca-app-pub-1205119990657394/6662044214
+
+
+Anddroid
+=========
+Cdigo App id -> ca-app-pub-1205119990657394~3496418308
+
+Android BannerAd       -> ca-app-pub-1205119990657394/6004189813
+Android IntersticialAd -> ca-app-pub-1205119990657394/7729524391
+Android RewardAd       -> ca-app-pub-1205119990657394/3604991255
