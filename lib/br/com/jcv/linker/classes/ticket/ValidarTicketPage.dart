@@ -11,6 +11,7 @@ import 'package:junta192/br/com/jcv/linker/classes/admob/admob-custom.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoPageDetail.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoPageResgate.dart';
 import 'package:junta192/br/com/jcv/linker/classes/comofunciona/como-funciona.dart';
+import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage.dart';
@@ -336,7 +337,7 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                     height: 50.0,
                     child: RaisedButton(
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                      onPressed: _comoFuncionaClick ,
+                      onPressed: (){fcnAcionarAjudaComoFunciona(context);}, //_comoFuncionaClick ,
                       child: Padding(
                         padding: EdgeInsets.all(5.0),
                         child: AutoSizeText("Clique aqui e veja como funciona", 
