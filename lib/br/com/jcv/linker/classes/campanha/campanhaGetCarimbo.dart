@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -149,7 +151,10 @@ void _carimboClick(BuildContext context){
                                       sb.writeln("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=$_carimbonovo");
                                       sb.writeln(" ");
                                       sb.writeln("Abra o aplicativo *Junta10* para você poder capturar o código e carimbar seu *cartão fidelidade*");
-                                      await Share.share( sb.toString(),
+                                      sb.writeln(" ");
+                                      sb.writeln("se você ainda *NÃO TEM o aplicativo Junta10* é muito fácil resolver. Clique no link abaixo para fazer o download na sua loja de aplicativos.");
+                                      sb.writeln("Android => bit.ly/junta10");
+                                      await Share.share(sb.toString(),
                                                         subject: "[Junta10] - Parabéns por consumir na nossa rede credenciada"
                                                       );
                                   } ,
