@@ -16,7 +16,8 @@ class Sobre extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   CommonDataItemTitleText("Ambiente Gateway Ativo", GlobalStartup().getAmbienteAtivo()),
-                  CommonDataItemTitleText("Versão", GlobalStartup().getVersao()),
+                  CommonDataItemTitleText("Versão", GlobalStartup().getVersaoMin()),
+                  CommonDataItemTitleText("Versão Build", GlobalStartup().getVersao()),
                   Platform.isIOS
                   ? CommonDataItemTitleText("Requer Dispositivo", "iPhone 7 ou superior")
                   : CommonDataItemTitleText("Requer Android", "6.0 (Marshmellow) ou superior"),

@@ -97,6 +97,11 @@ print("GlobalStartup._internal() => 5")    ;
     return versao;
   }
 
+  String getVersaoMin() {
+    List<String> versao = getVersao().split(".");
+    return versao[0] + "." + versao[1] + "." + versao[2];
+  }
+
   String getUpload() {
 print("GlobalStartup._internal() => 6")    ;
     String upload = glsErro + glsUpload;

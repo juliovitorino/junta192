@@ -13,6 +13,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-loading.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
+import 'package:share/share.dart';
 
 class GetCarimboLivrePage extends StatefulWidget {
   // Cria uma SessionStorage pra verifica arquivo de sessão de login
@@ -102,7 +103,7 @@ void _carimboClick(BuildContext context){
                 Text("Toque no botão abaixo",
                         style: TextStyle(fontSize: 26.0),
                       ),
-                Icon(Icons.arrow_drop_down_circle, size: 50.0),
+                //Icon(Icons.arrow_drop_down_circle, size: 50.0),
                 GestureDetector(
                   onTap: (){_carimboClick(context);},
                   child:  QrImage(
@@ -133,6 +134,37 @@ void _carimboClick(BuildContext context){
                                 color: Colors.green
                               )
                       ),
+                      Container(
+                        padding: EdgeInsets.only(top: 10.0),
+                        child: RaisedButton(
+                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                onPressed: () async {
+                                      final StringBuffer sb = new StringBuffer();
+                                      sb.writeln("Olá essa é uma mensagem enviada pelo aplicativo *Junta10*");
+                                      sb.writeln(" ");
+                                      sb.writeln("Se você está recebendo este QRCode é porque você consumiu algum produto ou serviço em nossa rede de participantes credenciada. ");                                    
+                                      sb.writeln(" ");
+                                      sb.writeln("Para *VISUALIZAR* seu carimbo clique no link abaixo:");
+                                      sb.writeln(" ");
+                                      sb.writeln("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=$_carimbonovo");
+                                      sb.writeln(" ");
+                                      sb.writeln("Abra o aplicativo *Junta10* para você poder capturar o código e carimbar seu *cartão fidelidade*");
+                                      await Share.share( sb.toString(),
+                                                        subject: "[Junta10] - Parabéns por consumir na nossa rede credenciada"
+                                                      );
+                                  } ,
+                                child: Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: AutoSizeText("Compartilhar Carimbo", 
+                                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                                          maxLines: 1,
+                                          ),
+                                ),
+                                color: Colors.green
+                            ),                
+
+                      ),
+
                       Container(
                         padding: EdgeInsets.only(top: 15.0),
                         child: !_checking 
