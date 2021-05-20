@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cashback/SaldoCashbackCCPage.dart';
+import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage.dart';
 //import 'package:junta10/br/com/jcv/linker/classes/ticket/DoarMeusCarimbos.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ticket/MeusCartoesFavoritos.dart';
@@ -88,6 +89,10 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _body, 
       drawer: widget.drawerMenu,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){fcnAcionarAjudaComoFunciona(context);},
+        child: Icon(Icons.help, size: 35.0),
+      ),
       bottomNavigationBar: new CurvedNavigationBar(
         index: 0,
         height: 65.0,

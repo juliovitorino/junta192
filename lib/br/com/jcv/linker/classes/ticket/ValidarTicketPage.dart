@@ -171,7 +171,7 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
 
   Future<Map> _carimbarCartelaDigital() async {
     http.Response response;
-    if (_ticket.length > 8){
+    if (_ticket.length > 14){
       // Solicita a requisição na URL por enquanto sem callback
       String url='${_urlControlador}validarQrcodeController.php?qrc=$_ticket&token=$_token';
       //debugPrint(_urlControlador);
@@ -269,7 +269,6 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                         ),
                       ) ,
 
-
 /*
                     Text("Clique no botão abaixo",
                       style: TextStyle(fontSize: 26.0),
@@ -320,7 +319,7 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                       keyboardType: TextInputType.text,
                       controller: _ticketController,
                       decoration: InputDecoration(
-                            labelText: "Digite o ticket se preferir",
+                            labelText: "Cole aqui o código recebido",
                             labelStyle: TextStyle(color: Colors.black),
                             border: OutlineInputBorder()
                         ),
@@ -332,6 +331,7 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
 //------------------------------------------------------------------------------                  
 // Botão Como Funciona?
 //------------------------------------------------------------------------------                  
+/* removido por experiencia dos usuários
                   Container(
                     padding: EdgeInsets.only(top: 10.0),
                     height: 50.0,
@@ -347,11 +347,12 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                       color: Colors.blue
                     )
                   ),
+*/
 
 //------------------------------------------------------------------------------                  
 // Botão carimbar cartela
 //-----------------------------------------------------------------------------                  
-/*
+
                   Container(
                     padding: EdgeInsets.only(top: 10.0),
                     height: 50.0,
@@ -360,13 +361,14 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                             onPressed: _carimboClick ,
                             child: Padding(
                               padding: EdgeInsets.all(5.0),
-                              child: Text("Carimbar Cartela Digital", 
-                                      style: TextStyle(color: Colors.white, fontSize: 25.0)),
+                              child: AutoSizeText("Carimbar Cartela Digital", 
+                                      style: TextStyle(color: Colors.white, fontSize: 25.0),
+                                      maxLines: 1),
                             ),
                             color: Colors.green
                           )
                   ),
-*/                  
+                
                   Container(
                     child: !_checking ? _statusCarimbo : _statusLoading,
                   )

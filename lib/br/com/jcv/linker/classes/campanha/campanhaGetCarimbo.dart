@@ -35,6 +35,7 @@ class GetCarimboLivrePage extends StatefulWidget {
 class _GetCarimboLivrePageState extends State<GetCarimboLivrePage> {
   final _statusLoading = new CommonLoading();
   String _carimbonovo = 'QR Code';
+  String _ticketReduzido = "000.000.000-00";
   bool _checking = false;
   String _token;
   String _urlControlador;
@@ -63,6 +64,7 @@ void _carimboClick(BuildContext context){
   _getProximoCarimboLivre().then((mapa) {
       setState(() {
         _carimbonovo = mapa['carimbo'];
+        _ticketReduzido = mapa['ticket'];
         _checking = false;
         if(mapa['msgcode'] == 'MSG-0054'){
           CommonShowDialogYesNo csdyn = new CommonShowDialogYesNo(
@@ -138,20 +140,34 @@ void _carimboClick(BuildContext context){
                       ),
                       Container(
                         padding: EdgeInsets.only(top: 10.0),
-                        child: RaisedButton(
+                        child: _checking 
+                              ? Container(width: 0, height: 0)
+                              : 
+                              RaisedButton(
                                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                                 onPressed: () async {
                                       final StringBuffer sb = new StringBuffer();
                                       sb.writeln("Olá essa é uma mensagem enviada pelo aplicativo *Junta10*");
                                       sb.writeln(" ");
-                                      sb.writeln("Se você está recebendo este QRCode é porque você consumiu algum produto ou serviço em nossa rede de participantes credenciada. ");                                    
+                                      sb.writeln("Parabéns por consumir algum produto ou serviço em nossa rede de participantes credenciada.");                                    
                                       sb.writeln(" ");
+                                      sb.writeln("Segue abaixo seu código brinde. Para *GANHAR* seu carimbo siga as instruções abaixo:");
+                                      sb.writeln(" ");
+                                      sb.writeln(_ticketReduzido);
+                                      sb.writeln(" ");
+                                      sb.writeln("1) Abra o aplicativo *Junta10* e DIGITE O CÓDIGO ACIMA com pontos e traços na tela *Carimbar Cartela*");
+                                      sb.writeln(" ");
+                                      sb.writeln("2) Aperte o botão VERDE *'Carimbar Cartela Digital'* e aguarde a validação. ");
+                                      sb.writeln(" ");
+
+/*                                      
                                       sb.writeln("Para *VISUALIZAR* seu carimbo clique no link abaixo:");
                                       sb.writeln(" ");
                                       sb.writeln("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=$_carimbonovo");
                                       sb.writeln(" ");
                                       sb.writeln("Abra o aplicativo *Junta10* para você poder capturar o código e carimbar seu *cartão fidelidade*");
                                       sb.writeln(" ");
+*/                                      
                                       sb.writeln("se você ainda *NÃO TEM o aplicativo Junta10* é muito fácil resolver. Clique no link abaixo para fazer o download na sua loja de aplicativos.");
                                       sb.writeln("Android => bit.ly/junta10");
                                       await Share.share(sb.toString(),
