@@ -37,6 +37,7 @@ class _GetCarimboLivrePageState extends State<GetCarimboLivrePage> {
   String _carimbonovo = 'QR Code';
   String _ticketReduzido = "000.000.000-00";
   bool _checking = false;
+  bool _checkingEntrada = false;
   String _token;
   String _urlControlador;
   AdMobCustomFactory<BannerAd> _bannerAd = AdMobCustomFactory('BannerAd');
@@ -66,6 +67,7 @@ void _carimboClick(BuildContext context){
         _carimbonovo = mapa['carimbo'];
         _ticketReduzido = mapa['ticket'];
         _checking = false;
+        _checkingEntrada = true;
         if(mapa['msgcode'] == 'MSG-0054'){
           CommonShowDialogYesNo csdyn = new CommonShowDialogYesNo(
             context: context,
@@ -140,7 +142,7 @@ void _carimboClick(BuildContext context){
                       ),
                       Container(
                         padding: EdgeInsets.only(top: 10.0),
-                        child: _checking 
+                        child: !_checkingEntrada
                               ? Container(width: 0, height: 0)
                               : 
                               RaisedButton(
