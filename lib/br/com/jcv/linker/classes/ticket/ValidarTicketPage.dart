@@ -8,10 +8,10 @@ import 'dart:convert';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:junta192/br/com/jcv/linker/classes/admob/admob-custom.dart';
+import 'package:junta192/br/com/jcv/linker/classes/campanha/campanhaPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoPageDetail.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoPageResgate.dart';
 import 'package:junta192/br/com/jcv/linker/classes/comofunciona/como-funciona.dart';
-import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage.dart';
@@ -59,107 +59,157 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
       }
     );
   }  
+
+//------------------------------------------------------------------------------                  
+// Processo de efetivação do carimbo digital
+//------------------------------------------------------------------------------                  
   void _carimboClick(){
-    setState(() {
-        _checking = true;
-    });
     _ticket = _ticketController.text; 
-    _carimbarCartelaDigital().then((mapa) {
-
-      Icon _icon;
-      CommonShowDialogYesNo escolha;
-      switch (mapa['msgcode']) {
-        case 'MSG-0001':
-        case 'MSG-0070':
-          PlayHelper.play(sndCashRegister);
-          _icon = new Icon(Icons.card_giftcard, size: 100.0, color: Colors.greenAccent);
-          escolha = CommonShowDialogYesNo(
-                  context: context,
-                  icon: _icon ,
-                  msg: mapa['msgcodeString'],
-                  textYes: "OK, quero resgatar agora",
-                  textNo: "Não, vou resgartar outro dia",
-          );
-          escolha.showDialogYesNo().then((onValue){
-            if(escolha.getChoice() == 'Y'){
-              _status = "0";
-              _realizarPesquisaPeloCarimbo().then((mapa){
-                if(mapa['msgcode'] == 'MSG-0001'){
-                  Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => new CartaoPageResgate(mapa) ),
-                        );
-                }
-              });
-            }
-          });    
-          break;
-        case 'MSG-0071':
-          PlayHelper.play(sndCashRegister);
-          _icon = new Icon(Icons.check_circle_outline, size: 100.0, color: Colors.greenAccent);
-          escolha = CommonShowDialogYesNo(
-                  context: context,
-                  icon: _icon ,
-                  msg: mapa['msgcodeString'],
-                  textYes: "OK, quero ver meu cartão",
-                  textNo: "Agora não",
-          );
-          escolha.showDialogYesNo().then((onValue){
-            if(escolha.getChoice() == 'Y'){
-              _status = "A";
-              _realizarPesquisaPeloCarimbo().then((mapa){
-                if(mapa['msgcode'] == 'MSG-0001'){
-                  Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => new CartaoPageDetail(mapa) ),
-                        );
-                }
-
-              });
-
-            }
-          });        
-          break;
-        case 'MSG-0072':
-          PlayHelper.play(sndCashRegister);
-          _icon = new Icon(Icons.tag_faces, size: 100.0, color: Colors.greenAccent);
-          escolha = CommonShowDialogYesNo(
-                  context: context,
-                  icon: _icon ,
-                  msg: mapa['msgcodeString'],
-                  textYes: "OK, quero ver meu cartão",
-                  textNo: "Agora não, mais tarde",
-          );
-          escolha.showDialogYesNo().then((onValue){
-            if(escolha.getChoice() == 'Y'){
-              _status = "A";
-              _realizarPesquisaPeloCarimbo().then((mapa){
-                if(mapa['msgcode'] == 'MSG-0001'){
-                  Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => new CartaoPageDetail(mapa) ),
-                        );
-                }
-              });
-            }
-          });        
-          break;
-        default:
-          _icon = new Icon(Icons.block, size: 120.0, color: Colors.redAccent);
-          escolha = CommonShowDialogYesNo(
-                  context: context,
-                  icon: _icon ,
-                  msg: mapa['msgcodeString']
-          );
-          escolha.showDialogYesNo();
-      }
 
 
+    // se  tiver algo digitado faz o processo do carimbo
+    if(_ticket.length > 0) {
       setState(() {
-        _statusCarimbo = CommonMsgCode(msgcode: mapa['msgcode'], msgcodeString: mapa['msgcodeString']);
-        _checking = false;
+          _checking = true;
       });
-    });
+      _carimbarCartelaDigital().then((mapa) {
+
+          Icon _icon;
+          CommonShowDialogYesNo escolha;
+          switch (mapa['msgcode']) {
+            case 'MSG-0001':
+            case 'MSG-0070':
+              PlayHelper.play(sndCashRegister);
+              _icon = new Icon(Icons.card_giftcard, size: 100.0, color: Colors.greenAccent);
+              escolha = CommonShowDialogYesNo(
+                      context: context,
+                      icon: _icon ,
+                      msg: mapa['msgcodeString'],
+                      textYes: "OK, quero resgatar agora",
+                      textNo: "Não, vou resgartar outro dia",
+              );
+              escolha.showDialogYesNo().then((onValue){
+                if(escolha.getChoice() == 'Y'){
+                  _status = "0";
+                  _realizarPesquisaPeloCarimbo().then((mapa){
+                    if(mapa['msgcode'] == 'MSG-0001'){
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => new CartaoPageResgate(mapa) ),
+                            );
+                    }
+                  });
+                }
+              });    
+              break;
+            case 'MSG-0071':
+              PlayHelper.play(sndCashRegister);
+              _icon = new Icon(Icons.check_circle_outline, size: 100.0, color: Colors.greenAccent);
+              escolha = CommonShowDialogYesNo(
+                      context: context,
+                      icon: _icon ,
+                      msg: mapa['msgcodeString'],
+                      textYes: "OK, quero ver meu cartão",
+                      textNo: "Agora não",
+              );
+              escolha.showDialogYesNo().then((onValue){
+                if(escolha.getChoice() == 'Y'){
+                  _status = "A";
+                  _realizarPesquisaPeloCarimbo().then((mapa){
+                    if(mapa['msgcode'] == 'MSG-0001'){
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => new CartaoPageDetail(mapa) ),
+                            );
+                    }
+
+                  });
+
+                }
+              });        
+              break;
+            case 'MSG-0072':
+              PlayHelper.play(sndCashRegister);
+              _icon = new Icon(Icons.tag_faces, size: 100.0, color: Colors.greenAccent);
+              escolha = CommonShowDialogYesNo(
+                      context: context,
+                      icon: _icon ,
+                      msg: mapa['msgcodeString'],
+                      textYes: "OK, quero ver meu cartão",
+                      textNo: "Agora não, mais tarde",
+              );
+              escolha.showDialogYesNo().then((onValue){
+                if(escolha.getChoice() == 'Y'){
+                  _status = "A";
+                  _realizarPesquisaPeloCarimbo().then((mapa){
+                    if(mapa['msgcode'] == 'MSG-0001'){
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => new CartaoPageDetail(mapa) ),
+                            );
+                    }
+                  });
+                }
+              });        
+              break;
+            default:
+              _icon = new Icon(Icons.block, size: 120.0, color: Colors.redAccent);
+              escolha = CommonShowDialogYesNo(
+                      context: context,
+                      icon: _icon ,
+                      msg: mapa['msgcodeString']
+              );
+              escolha.showDialogYesNo();
+          }
+
+
+          setState(() {
+            _statusCarimbo = CommonMsgCode(msgcode: mapa['msgcode'], msgcodeString: mapa['msgcodeString']);
+            _checking = false;
+          });
+        } // fim _carimbarCartelaDigital().then(...)
+      );
+    } else {
+      // A tendência do usuário pressionar o botão "Carimbar Cartela" sem capturar o códiggo é alta, então
+      // Pergunta ao usuário se ele é fornecedor ou cliente
+      Icon _icon = new Icon(Icons.help, size: 100.0, color: Colors.greenAccent);
+      CommonShowDialogYesNo escolha = CommonShowDialogYesNo(
+              context: context,
+              icon: _icon ,
+              title: "Ops! Tenho uma dúvida.",
+              msg: "Você é um ... ?",
+              textYes: "Fornecedor",
+              textNo: "Cliente",
+      );
+      escolha.showDialogYesNo().then((onValue){
+        // Se for fornecedor, fazer desvio para apresentar a tela de campanhas
+        if(escolha.getChoice() == 'Y'){
+          escolha = CommonShowDialogYesNo(
+                  context: context,
+                  icon: _icon ,
+                  msg: "Vou abrir suas campanhas pra você liberar o carimbo"
+          );
+          escolha.showDialogYesNo().then((value) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => new CampanhaPage(session: widget.session) ),
+            );
+          });
+
+        }
+        if(escolha.getChoice() == "N"){
+          escolha = CommonShowDialogYesNo(
+                  context: context,
+                  icon: _icon ,
+                  msg: "Vou abrir sua câmera pra você capturar o carimbo"
+          );
+          escolha.showDialogYesNo().then((value) { _qrScan(); });
+
+        }
+      });        
+    }
+
+
   }
 
   void _comoFuncionaClick(){
@@ -237,7 +287,9 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-
+//------------------------------------------------------------------------------                  
+// Google Admob
+//------------------------------------------------------------------------------                  
                       Container(
                         padding: EdgeInsets.only(top: 15.0),
                         child: FutureBuilder<BannerAd>(
@@ -275,6 +327,11 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                     ),
                     Icon(Icons.arrow_drop_down_circle, size: 50.0),
 */
+
+//------------------------------------------------------------------------------                  
+// Stack com imagem qrcode + botão capturar
+//------------------------------------------------------------------------------                  
+
                     Stack(
                       children: <Widget>[
                         GestureDetector(
@@ -311,6 +368,10 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                   ],
                 ),
 
+//------------------------------------------------------------------------------                  
+// TextField para digitação do código reduzido ou o capturado pelo ImagePicker
+//------------------------------------------------------------------------------                  
+
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Column(
@@ -329,9 +390,9 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
                     ),
                   ),
 //------------------------------------------------------------------------------                  
-// Botão Como Funciona?
+// Botão Como Funciona? - removido por experiencia dos usuários
 //------------------------------------------------------------------------------                  
-/* removido por experiencia dos usuários
+/* 
                   Container(
                     padding: EdgeInsets.only(top: 10.0),
                     height: 50.0,
