@@ -178,8 +178,8 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
               icon: _icon ,
               title: "Ops! Tenho uma dúvida.",
               msg: "Você é um ... ?",
-              textYes: "Fornecedor",
-              textNo: "Cliente",
+              textYes: "Colaborador",
+              textNo: "Consumidor",
       );
       escolha.showDialogYesNo().then((onValue){
         // Se for fornecedor, fazer desvio para apresentar a tela de campanhas
@@ -187,7 +187,8 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
           escolha = CommonShowDialogYesNo(
                   context: context,
                   icon: _icon ,
-                  msg: "Vou abrir suas campanhas pra você liberar o carimbo"
+                  title: "Colaborador",
+                  msg: "Vou abrir suas campanhas pra você liberar o carimbo para o consumidor"
           );
           escolha.showDialogYesNo().then((value) {
             Navigator.push(
@@ -201,6 +202,7 @@ class _ValidarTicketPageState extends State<ValidarTicketPage> {
           escolha = CommonShowDialogYesNo(
                   context: context,
                   icon: _icon ,
+                  title: "Consumidor",
                   msg: "Vou abrir sua câmera pra você capturar o carimbo"
           );
           escolha.showDialogYesNo().then((value) { _qrScan(); });

@@ -149,13 +149,14 @@ void _carimboClick(BuildContext context){
                                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                                 onPressed: () async {
                                       final StringBuffer sb = new StringBuffer();
+                                      String _ticketReduzidoTmp = _ticketReduzido;
                                       sb.writeln("Olá essa é uma mensagem enviada pelo aplicativo *Junta10*");
                                       sb.writeln(" ");
                                       sb.writeln("Parabéns por consumir algum produto ou serviço em nossa rede de participantes credenciada.");                                    
                                       sb.writeln(" ");
                                       sb.writeln("Segue abaixo seu código brinde. Para *GANHAR* seu carimbo siga as instruções abaixo:");
                                       sb.writeln(" ");
-                                      sb.writeln(_ticketReduzido);
+                                      sb.writeln(_ticketReduzidoTmp);
                                       sb.writeln(" ");
                                       sb.writeln("1) Abra o aplicativo *Junta10* e DIGITE O CÓDIGO ACIMA com pontos e traços na tela *Carimbar Cartela*");
                                       sb.writeln(" ");
@@ -175,6 +176,7 @@ void _carimboClick(BuildContext context){
                                       await Share.share(sb.toString(),
                                                         subject: "[Junta10] - Parabéns por consumir na nossa rede credenciada"
                                                       );
+                                      _carimboClick(context);
                                   } ,
                                 child: Padding(
                                   padding: EdgeInsets.all(5.0),
@@ -191,7 +193,7 @@ void _carimboClick(BuildContext context){
                       Container(
                         padding: EdgeInsets.only(top: 15.0),
                         child: !_checking 
-                        ? CommonDataItemTitleText("Assinatura Digital", _carimbonovo, sizetext: 14.0,)
+                        ? CommonDataItemTitleText("Próxima Assinatura Digital", _carimbonovo, sizetext: 14.0,)
                         : _statusLoading,
                       ),
 
