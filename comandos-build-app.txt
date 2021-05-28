@@ -12,7 +12,7 @@ flutter build apk --no-shrink
 #construir release dividir arquivos da build
 #gera arquivos de menor tamanho
 #melhor para distribuição na playstore
-flutter build apk --split-per-abi --no-shrink --release
+flutter build apk --split-per-abi --no-shrink --release 
 flutter build apk --split-per-abi --release
 
 # construir release
@@ -26,6 +26,11 @@ flutter build apk --release
 |_|\____/|_____/ 
                  
 #compilar a release para instalar no iphone
-flutter build IOS
+flutter build ios --release
 flutter install -d <id-do-telefone>
-#
+
+#peparar o archive pra ser validado no XCode
+flutter build ipa
+
+site que usei pra consertar todos os tamanhos de imagens do IOS
+https://appicon.co/#app-icon

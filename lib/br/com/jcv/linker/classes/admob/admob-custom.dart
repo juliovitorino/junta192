@@ -11,12 +11,16 @@ abstract class AdMobCustomFactory<T> {
 
   /// Retorna o BannerAdID da plataforma AdMob - blocos de anuncios
   static final String bannerAdUnitID = Platform.isIOS 
-      ? '<pegar-codigo-na-plataforma-AdMob>'
+      ? 'ca-app-pub-1205119990657394/6362661313'
       : 'ca-app-pub-1205119990657394/6004189813';
 
   static final String interstitialAdUnitID = Platform.isIOS 
-      ? '<pegar-codigo-na-plataforma-AdMob>'
+      ? 'ca-app-pub-1205119990657394/1820781071'
       : 'ca-app-pub-1205119990657394/7729524391';
+  
+  static final String rewardAdUnitID = Platform.isIOS 
+      ? 'ca-app-pub-1205119990657394/6662044214'
+      : 'ca-app-pub-1205119990657394/3604991255';
   
   // 
   // Métodos implementados dentro da classe

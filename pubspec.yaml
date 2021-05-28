@@ -56,7 +56,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/junta10-1000x1000.png"
+  image_path: "assets/images/logo-1024x1024.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -114,6 +114,7 @@ flutter:
     - assets/images/youtube-01.png
     - assets/images/money.png
     - assets/images/junta10-1000x1000.png
+    - assets/images/logo-1024x1024.png
     - assets/images/sem-imagem.jpeg
     - assets/images/ajuda/presente.png
     - assets/images/ajuda/step-0.png

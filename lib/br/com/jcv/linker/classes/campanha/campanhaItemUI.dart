@@ -135,12 +135,12 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
     }
 
     // Opções disponiveis somente para usuário membros e premium
-    if(    ( CacheSession().getSession()['tipousuario'] == "C" )
-        && ( CacheSession().getSession()['isGratuito'] == '0' )
-        || ( CacheSession().getSession()['tipousuario'] == "P" )
-    ){
+    //if(    ( CacheSession().getSession()['tipousuario'] == "C" )
+    //    && ( CacheSession().getSession()['isGratuito'] == '0' )
+    //    || ( CacheSession().getSession()['tipousuario'] == "P" )
+    //){
       _lstToolbar.add(new LinkerDataItemBottom(Icons.offline_bolt, "Performance", pageAction: new CampanhaPerformancePage(widget._campanhafull)));
-    }
+    //}
     
     _lstToolbar.add(new LinkerDataItemBottom(Icons.info, "Detalhes", pageAction: new CampanhaDetailPage(widget._campanhafull)));
     _lstToolbar.add(new LinkerDataItemBottom(Icons.record_voice_over, "Comentários", pageAction: new CampanhaComentariosPage(widget._campanhafull, isShowImage: true)));
