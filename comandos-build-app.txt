@@ -31,8 +31,8 @@ https://flutter.dev/docs/deployment/ios
 flutter build ios --release --no-tree-shake-icons
 flutter install -d <id-do-telefone>
 
-#peparar o archive pra ser validado no XCode
-flutter build ipa
+#peparar o archive pra ser validado no XCode e evitar o erro codepoint XXXXX not found in font
+flutter build ipa --no-tree-shake-icons
 
 site que usei pra consertar todos os tamanhos de imagens do IOS
 https://appicon.co/#app-icon
