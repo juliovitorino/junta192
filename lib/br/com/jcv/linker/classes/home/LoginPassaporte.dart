@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:junta192/br/com/jcv/linker/classes/storages/cache_session_apple_signin.dart';
+import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage_apple_signin.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'package:http/http.dart' as http;
@@ -180,8 +182,19 @@ print("Terminei _googleSignIn.signIn() ==> 2");
             // grava a seção no dispositivo se o usuário quer manter a sessãoa ativa
             widget.session.writeSession(json.encode(mapa.sessaodto));
 
+            // ATENÇÃO: Grava uma sessão exclusiva da apple pra gerenciar o login SignIn With Apple conforme texto do forum apple ***
+            // depois mantem um singleton pra acessar durante o 2o login em diante
+
+            //This behaves correctly, user info is only sent in the ASAuthorizationAppleIDCredential upon initial user sign up. 
+            //Subsequent logins to your app using Sign In with Apple with the same account do not share any user info and will only return a user identifier in the 
+            //ASAuthorizationAppleIDCredential. It is recommened that you securely cache the initial ASAuthorizationAppleIDCredential containing the user info until 
+            //you can validate that an account has succesfully been created on your server.
+            final SessionStorageAppleSignIn _sessionAppleSignIn = SessionStorageAppleSignIn()
+            ..writeSession(json.encode(mapa.sessaodto));
+
             // Grava o mapa da sessao dentro de um singleton
             CacheSession().setSession(json.encode(mapa.sessaodto));
+            CacheSessionAppleSignIn().setSession(json.encode(mapa.sessaodto));
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => new HomePage(drawerMenu: new LinkerDrawerMenuUsuario(session: new SessionStorage())) ),
@@ -282,18 +295,28 @@ print("Terminei _googleSignIn.signIn() ==> 2");
     );
   }
 
+//================================================
+// Realizar login apple no backend
+//================================================
+
   Future<LoginFacebookPost> _realizarLoginApple() async {
     http.Response response;
 
+    // se retorna nulo na givenName do SignIn Apple inicializa o cache Paralelo
+    if(_appleCredential.givenName == null ){
+      String sessionAppleSignIn = await SessionStorageAppleSignIn().readSession();
+      CacheSessionAppleSignIn().setSession(sessionAppleSignIn);
+    }
+
     // Obtem os valores dos controles na view
-    String usernamepost = _appleCredential.givenName;
-    String emailfcbk = _appleCredential.email;
+    String usernamepost = _appleCredential.givenName?? CacheSessionAppleSignIn().getSession()['usuariodto']['apelido'];
+    String emailfcbk = _appleCredential.email?? CacheSessionAppleSignIn().getSession()['usuariodto']['email'];
     String keeppost = val ? 'true' : 'false';
     String idfcbk = _appleCredential.userIdentifier;
     String fotourl = "no-user.png" ;
     String versao = GlobalStartup().getVersao();
 
-
+print('informações no metodo => _realizarLoginApple()');
 print(usernamepost)    ;
 print(emailfcbk);
 print(idfcbk);

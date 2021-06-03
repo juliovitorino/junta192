@@ -24,9 +24,11 @@ flutter build apk --release
 | | |  | |\___ \ 
 | | |__| |____) |
 |_|\____/|_____/ 
-                 
-#compilar a release para instalar no iphone
-flutter build ios --release
+
+https://flutter.dev/docs/deployment/ios
+
+#compilar a release para instalar no iphone e evitar o erro codepoint XXXXX not found in font
+flutter build ios --release --no-tree-shake-icons
 flutter install -d <id-do-telefone>
 
 #peparar o archive pra ser validado no XCode
