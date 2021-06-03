@@ -47,7 +47,8 @@ dependencies:
   google_mobile_ads: ^0.12.1
   auto_size_text: ^2.1.0
   share: ^2.0.1
-
+  sign_in_with_apple: ^3.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

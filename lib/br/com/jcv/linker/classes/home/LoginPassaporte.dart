@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:junta192/br/com/jcv/linker/classes/home/HomePage.dart';
@@ -55,6 +56,7 @@ class _LoginPassaporteState extends State<LoginPassaporte> {
   var profileData;
 
 
+  AuthorizationCredentialAppleID _appleCredential;
   var facebookLogin = FacebookLogin();
 
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -80,6 +82,31 @@ print("Terminei _googleSignIn.signIn() ==> 2");
         isLoggedIn = false;
       });
   }
+
+//==========================================
+// Obter as credenciais do provider da apple
+//==========================================
+  void _appleLogin() async {
+    _appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+/*
+      webAuthenticationOptions: WebAuthenticationOptions(
+        // TODO: Set the `clientId` and `redirectUri` arguments to the values you entered in the Apple Developer portal during the setup
+        clientId:
+            'jcv.com.br.junta10',
+        redirectUri: Uri.parse(
+          'https://elitefinanceira.com/producao/cfdi/php/classes/gateway/callbacks/sign_in_with_apple'
+          ),
+        ),
+*/
+    );
+
+    print(_appleCredential);
+  }
+
 
 
 
@@ -120,8 +147,55 @@ print("Terminei _googleSignIn.signIn() ==> 2");
     setState(() {
       val = value;
     });
-
   }
+
+//=======================================
+// Login atraves de provider Apple
+//=======================================
+
+  void _onLoginAppleClick() async {
+      await _appleLogin();
+
+      print("============================================");
+      print("Retornou do _appleLogin()");
+      print(_appleCredential);
+      print("============================================");
+
+      _realizarLoginApple().then((mapa){
+          debugPrint(mapa.msgcode);
+          debugPrint(json.encode(mapa.sessaodto));
+
+          if(mapa.msgcode == "MSG-0135" || mapa.msgcode == "MSG-0136" || mapa.msgcode == "MSG-0138" || mapa.msgcode == "MSG-0134"){
+            setState(() {
+              _msg = mapa.msgcodeString;
+              isMsg = true;
+            });
+            print(mapa.msgcodeString);
+          } else {
+            setState(() {
+              _msg = "";
+              isMsg = false;
+            });
+
+            // grava a seção no dispositivo se o usuário quer manter a sessãoa ativa
+            widget.session.writeSession(json.encode(mapa.sessaodto));
+
+            // Grava o mapa da sessao dentro de um singleton
+            CacheSession().setSession(json.encode(mapa.sessaodto));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => new HomePage(drawerMenu: new LinkerDrawerMenuUsuario(session: new SessionStorage())) ),
+            );
+          }
+
+        });
+  }
+
+  
+
+//=======================================
+// Login atraves de provider google
+//=======================================
 
   void _onLoginGoogleClick() async {
       await _googleLogin();
@@ -161,7 +235,9 @@ print("Terminei _googleSignIn.signIn() ==> 2");
         });
   }
 
-
+//=======================================
+// Login atraves de provider facebook
+//=======================================
 
   void _onLoginFacebookClick() async {
       await initiateFacebookLogin();
@@ -190,6 +266,9 @@ print("Terminei _googleSignIn.signIn() ==> 2");
   }
 
 
+//================================================
+// Login atraves de provider proprio email e senha
+//================================================
 
   void _onLoginEmailClick() {
     Navigator.push(
@@ -202,6 +281,35 @@ print("Terminei _googleSignIn.signIn() ==> 2");
       ) ),
     );
   }
+
+  Future<LoginFacebookPost> _realizarLoginApple() async {
+    http.Response response;
+
+    // Obtem os valores dos controles na view
+    String usernamepost = _appleCredential.givenName;
+    String emailfcbk = _appleCredential.email;
+    String keeppost = val ? 'true' : 'false';
+    String idfcbk = _appleCredential.userIdentifier;
+    String fotourl = "no-user.png" ;
+    String versao = GlobalStartup().getVersao();
+
+
+print(usernamepost)    ;
+print(emailfcbk);
+print(idfcbk);
+print(fotourl);
+
+    LoginFacebookPost newPost = new LoginFacebookPost(idfcbk,
+        usernamepost,
+        emailfcbk,
+        fotourl,
+        versao);
+print("GatewaySSL ==>" + GlobalStartup().getGatewaySsl())        ;
+print("Versao ==>" + GlobalStartup().getVersao())        ;
+    LoginFacebookPost p = await createPost(GlobalStartup().getGatewaySsl() + '/appFacebookAutenticacao.php', body: newPost.toMap());
+    return p;
+  }
+
 
 
 
@@ -462,6 +570,59 @@ print("Versao ==>" + GlobalStartup().getVersao())        ;
                     ],
                   ),
                 ),
+                //-------------------------------------------------
+                // Entrar usando apple modificação 03.06.2021
+                //-------------------------------------------------
+                Container(
+                  margin: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: new Row(
+                    children: <Widget>[
+                      new Expanded(
+                        child: FlatButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(30.0)),
+                          splashColor: Color(0Xff000000),
+                          color: Color(0Xff000000),
+                          child: new Row(
+                            children: <Widget>[
+                              new Padding(
+                                padding: const EdgeInsets.only(left: 20.0),
+                                child: Text(
+                                  "ENTRAR COM APPLE",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              new Expanded(
+                                child: Container(),
+                              ),
+                              new Transform.translate(
+                                offset: Offset(15.0, 0.0),
+                                child: new Container(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: FlatButton(
+                                    shape: new RoundedRectangleBorder(
+                                        borderRadius:
+                                        new BorderRadius.circular(28.0)),
+                                    splashColor: Colors.white,
+                                    color: Colors.white,
+                                    child: Icon(
+                                      const IconData(0xf8ff, fontFamily: 'icomoon'),
+                                      color: Color(0Xff000000)),
+                                    onPressed: _onLoginAppleClick,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          onPressed: _onLoginAppleClick,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+
 
 /* PODE APAGAR ESSE TRECHO DE CÓDIGO
                 //---------------------------------
