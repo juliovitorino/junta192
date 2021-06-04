@@ -12,7 +12,7 @@ flutter build apk --no-shrink
 #construir release dividir arquivos da build
 #gera arquivos de menor tamanho
 #melhor para distribuição na playstore
-flutter build apk --split-per-abi --no-shrink --release 
+flutter build apk --split-per-abi --no-shrink --release
 flutter build apk --split-per-abi --release
 
 # construir release

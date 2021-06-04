@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -507,9 +508,10 @@ print("Versao ==>" + GlobalStartup().getVersao())        ;
                             children: <Widget>[
                               new Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
-                                child: Text(
-                                  "ENTRAR COM FACEBOOK",
+                                child: AutoSizeText(
+                                  "Continuar com Facebook",
                                   style: TextStyle(color: Colors.white),
+                                  maxLines: 1,
                                 ),
                               ),
                               new Expanded(
@@ -560,9 +562,10 @@ print("Versao ==>" + GlobalStartup().getVersao())        ;
                             children: <Widget>[
                               new Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
-                                child: Text(
-                                  "ENTRAR COM GOOGLE",
+                                child: AutoSizeText(
+                                  "Continuar com Google",
                                   style: TextStyle(color: Colors.white),
+                                  maxLines: 1,
                                 ),
                               ),
                               new Expanded(
@@ -611,9 +614,10 @@ print("Versao ==>" + GlobalStartup().getVersao())        ;
                             children: <Widget>[
                               new Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
-                                child: Text(
-                                  "ENTRAR COM APPLE",
+                                child: AutoSizeText(
+                                  "Continuar com Apple",
                                   style: TextStyle(color: Colors.white),
+                                  maxLines: 1,
                                 ),
                               ),
                               new Expanded(
