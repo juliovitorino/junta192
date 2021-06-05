@@ -318,7 +318,7 @@ print("Terminei _googleSignIn.signIn() ==> 2");
     String versao = GlobalStartup().getVersao();
 
 print('informações no metodo => _realizarLoginApple()');
-print(usernamepost)    ;
+print(usernamepost);
 print(emailfcbk);
 print(idfcbk);
 print(fotourl);

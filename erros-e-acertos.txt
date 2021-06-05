@@ -1,2 +1,16 @@
 Erros e soluções mais comuns durante processo de deployment
 
+1) Por causa do alto nível de segurança da Apple, se você já instalou alguma vez o Junta10 no seu iPhone alguma vez, 
+   você será necessário que você siga os procedimentos abaixo. Isso é mandatório.
+   a) Desinstale o aplicativo
+   b) Selecione Ajustes >> ID Apple, iCloud >> Senhas e Segurança >> Apps que usam o ID Apple
+   c) Selecione o aplicativo Junta10 e a opção Parar de usar o ID Apple
+   d) Instale o aplicativo novamente e faça novamente o login usando seu ID Apple 
+
+ Apple has a secutity high level system, so if you have ever installed any time Junta10 app in your iPhone, it will be 
+   necessary you to follow the procedures below. This is mandatory:
+   a) Uninstall Junta10 App
+   b) Select Settings >> ID Apple, iCloud >> Password & Security >> Apps uses ID Apple
+   c) Select Junta10 App in app list and then select the 'Stop use ID Apple' option
+   d) Install the Junta10 app again and go ahead with Sign In With Apple button
+
