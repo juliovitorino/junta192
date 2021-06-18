@@ -17,8 +17,6 @@ import 'package:junta192/br/com/jcv/linker/classes/home/LoginLinker.dart';
 import 'package:junta192/br/com/jcv/linker/classes/style/asset.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/specifics/LinkerDrawerMenuUsuario.dart';
 
-
-
 Future<LoginFacebookPost> createPost(String url, {Map body}) async {
   return http.post(Uri.parse(url), body: body).then((http.Response response) {
     final int statusCode = response.statusCode;

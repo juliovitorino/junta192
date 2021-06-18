@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:junta192/br/com/jcv/linker/classes/campanhasorteio/CampanhaSorteioPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 
 import 'package:junta192/br/com/jcv/linker/classes/campanha/campanhaDetailPage.dart';
@@ -101,6 +102,7 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
     // Opções do Admin
     if(widget._campanhafull['status'] == 'A' ){
       _lstToolbar.add(new LinkerDataItemBottom(Icons.edit, "Editar", pageAction: new CampanhaPageEdit(widget._campanhafull)));
+      _lstToolbar.add(new LinkerDataItemBottom(Icons.casino, "Sorteios", pageAction: new CampanhaSorteioPage(widget._campanhafull)));
 
       if(CacheSession().getSession()['tipousuario'] == "P"){
         _lstToolbar.add(new LinkerDataItemBottom(Icons.lock_open, "Autorizadores", pageAction: new UsuarioAutorizadorPage(widget._campanhafull['id'])));
