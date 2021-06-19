@@ -34,13 +34,25 @@ class _CampanhaSorteioUIState extends State<CampanhaSorteioUI> {
 
     String validade =  widget._campanhasorteioVO['dataComecoSorteio'] == null ? "Em aberto" : widget._campanhasorteioVO['dataComecoSorteio'] + " a " + widget._campanhasorteioVO['dataFimSorteio'];
 
+    // monta dinamicamente os botoes de ação
+    List<Widget> _lstBtnAcao = [];
+    if(widget._campanhasorteioVO['status'] == "P") {
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.run_circle, color: Colors.white), "Ativar", (){}));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){}, color: Colors.red[800]));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}));
+    }
+
+    // campanha em status PRONTO PRA USO
+    if(widget._campanhasorteioVO['status'] == "D") {
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.close, color: Colors.white), "Desativar", (){}, color: Colors.red[800]));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.pause, color: Colors.white), "Pausar", (){}));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}));
+    }
+
     // Toolbar com botões de ação
     Widget _widActionBtn = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}),
-        CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){}),
-      ],
+      children: _lstBtnAcao,
     );
 
     return Container(

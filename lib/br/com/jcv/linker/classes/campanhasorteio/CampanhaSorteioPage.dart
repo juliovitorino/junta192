@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:junta192/br/com/jcv/linker/classes/campanhacashbackcc/CampanhaCashbackCCVOPost.dart';
+import 'package:junta192/br/com/jcv/linker/classes/campanhasorteio/CampanhaSorteioVOPost.dart';
 import 'dart:convert';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-loading.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
@@ -49,9 +51,11 @@ class _CampanhaSorteioPageState extends State<CampanhaSorteioPage> {
       ),
 floatingActionButton: new FloatingActionButton(
   onPressed: () {
+    CampanhaSorteioVOPost campanhasorteioVO = new CampanhaSorteioVOPost(id: "0", idCampanha: _camp_id);
+    
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => new CampanhaSorteioPageCRUD() ),
+      MaterialPageRoute(builder: (context) => new CampanhaSorteioPageCRUD(campanhasorteioVO: campanhasorteioVO) ),
     );
   },
   child: Icon(Icons.add_circle_outline),

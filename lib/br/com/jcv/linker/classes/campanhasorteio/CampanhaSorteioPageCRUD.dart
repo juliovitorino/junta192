@@ -38,39 +38,31 @@ class _CampanhaSorteioPageCRUDState extends State<CampanhaSorteioPageCRUD> {
     // ============================================================================
     // inicializa os controladores de campos com os respectivos atributos
     // ============================================================================
-  TextEditingController tecid = new TextEditingController();
-  TextEditingController tecidCampanha = new TextEditingController();
+//  TextEditingController tecidCampanha = new TextEditingController();
   TextEditingController tecnome = new TextEditingController();
   TextEditingController tecurlRegulamento = new TextEditingController();
   TextEditingController tecpremio = new TextEditingController();
-  TextEditingController tecdataInicioSorteio = new TextEditingController();
-  TextEditingController tecdataFimSorteio = new TextEditingController();
   TextEditingController tecnuMaxTicketSorteio = new TextEditingController();
-  TextEditingController tecstatus = new TextEditingController();
-  TextEditingController tecdataCadastro = new TextEditingController();
-  TextEditingController tecdataAtualizacao = new TextEditingController();
-
+  
   @override
   void initState(){
     _token = CacheSession().getSession()['tokenid'];
     _urlControlador = CacheSession().getSession()['urlControlador'];
-    _iscadastro = (widget.campanhasorteioVO == null);
+    _iscadastro = false;
+    if(widget.campanhasorteioVO == null || (widget.campanhasorteioVO != null && widget.campanhasorteioVO.id == "0")) 
+    {
+      _iscadastro = true;
+    }
 
     // ============================================================================
     // inicializa os controladores de campos com os respectivos atributos
     // ============================================================================
-    tecid.text = _iscadastro ? '' : widget.campanhasorteioVO.id;
-    tecidCampanha.text = _iscadastro ? '' : widget.campanhasorteioVO.idCampanha;
+//    tecidCampanha.text = _iscadastro ? '' : widget.campanhasorteioVO.idCampanha;
     tecnome.text = _iscadastro ? '' : widget.campanhasorteioVO.nome;
     tecurlRegulamento.text = _iscadastro ? '' : widget.campanhasorteioVO.urlRegulamento;
     tecpremio.text = _iscadastro ? '' : widget.campanhasorteioVO.premio;
-    tecdataInicioSorteio.text = _iscadastro ? '' : widget.campanhasorteioVO.dataInicioSorteio;
-    tecdataFimSorteio.text = _iscadastro ? '' : widget.campanhasorteioVO.dataFimSorteio;
     tecnuMaxTicketSorteio.text = _iscadastro ? '' : widget.campanhasorteioVO.nuMaxTicketSorteio;
-    tecstatus.text = _iscadastro ? '' : widget.campanhasorteioVO.status;
-    tecdataCadastro.text = _iscadastro ? '' : widget.campanhasorteioVO.dataCadastro;
-    tecdataAtualizacao.text = _iscadastro ? '' : widget.campanhasorteioVO.dataAtualizacao;
-
+  
   }
 
   // ===============================================
@@ -103,18 +95,12 @@ class _CampanhaSorteioPageCRUDState extends State<CampanhaSorteioPageCRUD> {
     // ============================================================================
     // Criação dos campos que irão permitir a entrada de dados
     // ============================================================================
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecid, tit: TextInputType.text, label: "ID da campanha sorteio"));
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecidCampanha, tit: TextInputType.text, label: "ID da campanha"));
+//    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecidCampanha, tit: TextInputType.text, label: "ID da campanha"));
     _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecnome, tit: TextInputType.text, label: "Nome do sorteio"));
     _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecurlRegulamento, tit: TextInputType.text, label: "URL regulamento do sorteio"));
     _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecpremio, tit: TextInputType.text, label: "Prêmio do sorteio"));
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecdataInicioSorteio, tit: TextInputType.text, label: "Data de início"));
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecdataFimSorteio, tit: TextInputType.text, label: "Data de término"));
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecnuMaxTicketSorteio, tit: TextInputType.text, label: "Máximo de tickets"));
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecstatus, tit: TextInputType.text, label: "Status"));
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecdataCadastro, tit: TextInputType.text, label: "Data de Cadastro"));
-    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecdataAtualizacao, tit: TextInputType.text, label: "Data de Atualização"));
-
+    _lstCamposCampanhaSorteio.add(criarWidgetEntry(tec: tecnuMaxTicketSorteio, tit: TextInputType.number, label: "Máximo de tickets"));
+  
     // ==================================================================================
     // Move os conteúdos dos controladores para um VO para enviar um Mapa JSON ao backend
     // ==================================================================================
@@ -123,20 +109,16 @@ class _CampanhaSorteioPageCRUDState extends State<CampanhaSorteioPageCRUD> {
           onpressed: () async {
           CampanhaSorteioVOPost newPost = new CampanhaSorteioVOPost(
               tokenid: _token,
-              id: widget.campanhasorteioVO == null ? 0: widget.campanhasorteioVO.id,
-              idCampanha: tecidCampanha.text, 
+              id: widget.campanhasorteioVO.id,
+              idCampanha: widget.campanhasorteioVO.idCampanha, 
               nome: tecnome.text, 
               urlRegulamento: tecurlRegulamento.text, 
               premio: tecpremio.text, 
-              dataInicioSorteio: tecdataInicioSorteio.text, 
-              dataFimSorteio: tecdataFimSorteio.text, 
               nuMaxTicketSorteio: tecnuMaxTicketSorteio.text, 
-              status: tecstatus.text, 
-              dataCadastro: tecdataCadastro.text, 
-              dataAtualizacao: tecdataAtualizacao.text, 
           );
-    String _urlcrud = _iscadastro ? '${_urlControlador}appInserirCampanhaSorteio.php' : '${_urlControlador}appAtualizarCampanhaSorteio.php';
-    CampanhaSorteioVOPost p = await createPost('${_urlcrud}', body: newPost.toMap());
+          String _urlcrud = _iscadastro ? '${_urlControlador}appInserirCampanhaSorteio.php' : '${_urlControlador}appAtualizarCampanhaSorteio.php';
+print(_urlcrud);          
+          CampanhaSorteioVOPost p = await createPost('$_urlcrud', body: newPost.toMap());
           Icon _icon = p.msgcode == 'MSG-0001' 
           ? Icon(Icons.check_circle_outline, size: 120.0, color: Colors.green,)
           : Icon(Icons.error, size: 120.0, color: Colors.red,);

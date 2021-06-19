@@ -15,6 +15,7 @@ flutter build apk --no-shrink
 flutter build apk --split-per-abi --no-shrink --release --no-tree-shake-icons
 flutter build apk --split-per-abi --release
 flutter install -d 5200f2b8ecbeb423
+flutter run -d 5200f2b8ecbeb423
 
 # construir release
 flutter build apk --release
