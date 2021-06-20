@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -6,6 +8,7 @@ import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-dataitem-tit
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-flatbutton-function.dart';
 
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-showdialog.dart';
 
 class CampanhaSorteioUI extends StatefulWidget {
 
@@ -21,13 +24,50 @@ class _CampanhaSorteioUIState extends State<CampanhaSorteioUI> {
 
   String _token;
   String _urlControlador;
-   bool _isVisibleActionBtn = false;
+  bool _isVisibleActionBtn = false;
+  String _casoid;
 
   @override
   initState() {
     _token = CacheSession().getSession()['tokenid'];
     _urlControlador = CacheSession().getSession()['urlControlador'];
+    _casoid = widget._campanhasorteioVO['id'];
   }
+
+
+  Future<Map> _ativarCampanhaSorteio() async {
+    http.Response response;
+    // Solicita a requisição na URL por enquanto sem callback
+    String url='${_urlControlador}appAtivarCampanhaSorteio.php?tokenid=$_token&casoid=$_casoid';
+print(url);
+    response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+  }
+
+  void _ativarCampanhaSorteioClick() {
+
+    CommonShowDialogYesNo ativarClick = CommonShowDialogYesNo(
+      context: context, 
+      icon: Icon(Icons.help, size: 120.0, color: Colors.blue), 
+      textYes: "Sim",
+      textNo: "Não",
+      msg: "Deseja ATIVAR a campanha promocional?");
+
+    ativarClick.showDialogYesNo().then((value) {
+      if (ativarClick.getChoice() == "Y") {
+        _ativarCampanhaSorteio().then((mapa) {
+          CommonShowDialogYesNo msgretorno = CommonShowDialogYesNo (
+            context: context,
+            icon: Icon(Icons.thumb_up, size: 120.0, color: Colors.blue) ,
+            msg: mapa['msgcodeString']
+          )..showDialogYesNo();
+        });
+      }
+
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +77,9 @@ class _CampanhaSorteioUIState extends State<CampanhaSorteioUI> {
     // monta dinamicamente os botoes de ação
     List<Widget> _lstBtnAcao = [];
     if(widget._campanhasorteioVO['status'] == "P") {
-      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.run_circle, color: Colors.white), "Ativar", (){}));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.run_circle, color: Colors.white), "Ativar", (){
+        _ativarCampanhaSorteioClick();
+      }));
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){}, color: Colors.red[800]));
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}));
     }

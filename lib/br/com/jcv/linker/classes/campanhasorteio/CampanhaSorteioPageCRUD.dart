@@ -154,7 +154,7 @@ print(_urlcrud);
 
     return new Scaffold(
       appBar: new AppBar(
-        title: Text(_iscadastro? "Adicionar" : "Editar"),
+        title: Text(_iscadastro? "Adicionar Sorteio" : "Editar Sorteio"),
       ),
       body: _sceditview,
     );
