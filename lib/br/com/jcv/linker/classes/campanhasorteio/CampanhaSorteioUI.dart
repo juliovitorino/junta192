@@ -108,6 +108,43 @@ print(url);
 
   }
 
+//-------------------------------------------------------------------
+// pausar a campanha para iniciar criação de tickets
+//-------------------------------------------------------------------
+
+  Future<Map> _pausarCampanhaSorteio() async {
+    http.Response response;
+    // Solicita a requisição na URL por enquanto sem callback
+    String url='${_urlControlador}appPausarCampanhaSorteio.php?tokenid=$_token&casoid=$_casoid';
+print(url);
+    response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+  }
+
+  void _pausarCampanhaSorteioClick() {
+
+    CommonShowDialogYesNo pausarClick = CommonShowDialogYesNo(
+      context: context, 
+      icon: Icon(Icons.help, size: 120.0, color: Colors.blue), 
+      textYes: "Sim",
+      textNo: "Não",
+      msg: "Deseja PAUSAR a campanha promocional selecionada?");
+
+    pausarClick.showDialogYesNo().then((value) {
+      if (pausarClick.getChoice() == "Y") {
+        _pausarCampanhaSorteio().then((mapa) {
+          CommonShowDialogYesNo msgretorno = CommonShowDialogYesNo (
+            context: context,
+            icon: Icon(Icons.thumb_up, size: 120.0, color: Colors.blue) ,
+            msg: mapa['msgcodeString']
+          )..showDialogYesNo();
+        });
+      }
+
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +172,9 @@ print(url);
     // campanha em status ATIVO
     if(widget._campanhasorteioVO['status'] == "A") {
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.close, color: Colors.white), "Desativar", (){}, color: Colors.red[800]));
-      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.pause, color: Colors.white), "Pausar", (){}));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.pause, color: Colors.white), "Pausar", (){
+        _pausarCampanhaSorteioClick();
+      }));
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}));
     }
 
