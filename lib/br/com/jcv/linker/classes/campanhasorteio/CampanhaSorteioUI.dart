@@ -34,6 +34,9 @@ class _CampanhaSorteioUIState extends State<CampanhaSorteioUI> {
     _casoid = widget._campanhasorteioVO['id'];
   }
 
+//-------------------------------------------------------------------
+// ativar a campanha para iniciar criação de tickets
+//-------------------------------------------------------------------
 
   Future<Map> _ativarCampanhaSorteio() async {
     http.Response response;
@@ -68,6 +71,43 @@ print(url);
 
   }
 
+//-------------------------------------------------------------------
+// usar a campanha para iniciar criação de tickets
+//-------------------------------------------------------------------
+
+  Future<Map> _usarCampanhaSorteio() async {
+    http.Response response;
+    // Solicita a requisição na URL por enquanto sem callback
+    String url='${_urlControlador}appUsarCampanhaSorteio.php?tokenid=$_token&casoid=$_casoid';
+print(url);
+    response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+  }
+
+  void _usarCampanhaSorteioClick() {
+
+    CommonShowDialogYesNo usarClick = CommonShowDialogYesNo(
+      context: context, 
+      icon: Icon(Icons.help, size: 120.0, color: Colors.blue), 
+      textYes: "Sim",
+      textNo: "Não",
+      msg: "Deseja USAR a campanha promocional como principal?");
+
+    usarClick.showDialogYesNo().then((value) {
+      if (usarClick.getChoice() == "Y") {
+        _usarCampanhaSorteio().then((mapa) {
+          CommonShowDialogYesNo msgretorno = CommonShowDialogYesNo (
+            context: context,
+            icon: Icon(Icons.thumb_up, size: 120.0, color: Colors.blue) ,
+            msg: mapa['msgcodeString']
+          )..showDialogYesNo();
+        });
+      }
+
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +126,14 @@ print(url);
 
     // campanha em status PRONTO PRA USO
     if(widget._campanhasorteioVO['status'] == "D") {
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.play_arrow, color: Colors.white), "Usar", (){
+        _usarCampanhaSorteioClick();
+      }, color: Colors.green[800]));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}));
+    }
+
+    // campanha em status ATIVO
+    if(widget._campanhasorteioVO['status'] == "A") {
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.close, color: Colors.white), "Desativar", (){}, color: Colors.red[800]));
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.pause, color: Colors.white), "Pausar", (){}));
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}));
