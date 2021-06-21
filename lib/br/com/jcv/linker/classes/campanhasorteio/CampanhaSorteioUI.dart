@@ -184,6 +184,44 @@ print(url);
   }
 
 
+//-------------------------------------------------------------------
+// Apagar a campanha sorteio definitivamente
+//-------------------------------------------------------------------
+
+  Future<Map> _apagarCampanhaSorteio() async {
+    http.Response response;
+    // Solicita a requisição na URL por enquanto sem callback
+    String url='${_urlControlador}appApagarCampanhaSorteio.php?tokenid=$_token&casoid=$_casoid';
+print(url);
+    response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+  }
+
+  void _apagarCampanhaSorteioClick() {
+
+    CommonShowDialogYesNo apagarClick = CommonShowDialogYesNo(
+      context: context, 
+      icon: Icon(Icons.help, size: 120.0, color: Colors.blue), 
+      textYes: "Sim",
+      textNo: "Não",
+      msg: "Deseja REALMENTE APAGAR a campanha promocional?");
+
+    apagarClick.showDialogYesNo().then((value) {
+      if (apagarClick.getChoice() == "Y") {
+        _apagarCampanhaSorteio().then((mapa) {
+          CommonShowDialogYesNo msgretorno = CommonShowDialogYesNo (
+            context: context,
+            icon: Icon(Icons.thumb_up, size: 120.0, color: Colors.blue) ,
+            msg: mapa['msgcodeString']
+          )..showDialogYesNo();
+        });
+      }
+
+    });
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -195,7 +233,9 @@ print(url);
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.run_circle, color: Colors.white), "Ativar", (){
         _ativarCampanhaSorteioClick();
       }));
-      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){}, color: Colors.red[800]));
+      _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){
+        _apagarCampanhaSorteioClick();
+      }, color: Colors.red[800]));
       _lstBtnAcao.add(CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}));
     }
 
