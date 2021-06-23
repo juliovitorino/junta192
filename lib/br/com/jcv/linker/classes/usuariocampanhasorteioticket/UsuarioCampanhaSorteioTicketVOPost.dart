@@ -1,0 +1,57 @@
+// Copyright (c) 2019 Julio Vitorino. Todos os direitos reservados.
+
+
+
+
+class UsuarioCampanhaSorteioTicketVOPost {
+  final String tokenid;
+  final String id;
+  final String iduscs;
+  final String ticket;
+  final String status;
+  final String dataCadastro;
+  final String dataAtualizacao;
+  final String msgcode;
+  final String msgcodeString;
+
+/// Construtor da classe UsuarioCampanhaSorteioTicketVOPost
+  UsuarioCampanhaSorteioTicketVOPost({this.tokenid, 
+  this.id,
+  this.iduscs,
+  this.ticket,
+  this.status,
+  this.dataCadastro,
+  this.dataAtualizacao,
+  this.msgcode='', 
+  this.msgcodeString=''});
+
+/// Retorno do Backend devolvendo um JSON na estrutura de campos abaixo
+  factory UsuarioCampanhaSorteioTicketVOPost.fromJson(Map<String, dynamic> json) {
+    return UsuarioCampanhaSorteioTicketVOPost(
+      tokenid: json['tokenid'],
+      id: json['id'],
+      iduscs: json['iduscs'],
+      ticket: json['ticket'],
+      status: json['status'],
+      dataCadastro: json['dataCadastro'],
+      dataAtualizacao: json['dataAtualizacao'],
+
+      msgcode: json['msgcode'],
+      msgcodeString: json['msgcodeString'],
+    );
+  }
+/// Cria um mapa para ser enviado pelo método post da classe Http
+  Map toMap() {
+    var map = new Map<String, dynamic>();
+    map["tokenid"] = tokenid;
+    map["id"] = id == null ? '' : id;
+    map["iduscs"] = iduscs == null ? '' : iduscs;
+    map["ticket"] = ticket == null ? '' : ticket;
+    map["status"] = status == null ? '' : status;
+    map["dataCadastro"] = dataCadastro == null ? '' : dataCadastro;
+    map["dataAtualizacao"] = dataAtualizacao == null ? '' : dataAtualizacao;
+
+    return map;
+  }
+}
+
