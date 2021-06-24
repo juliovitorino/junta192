@@ -64,7 +64,8 @@ class _UsuarioCampanhaSorteioUIState extends State<UsuarioCampanhaSorteioUI> {
                           children: <Widget>[
                             CommonDataItemTitleText("Você participa da campanha Sorteio", widget._usuariocampanhasorteioVO['campanhaSorteio']['nome']),
                             CommonDataItemTitleText("Concorre ao prêmio", widget._usuariocampanhasorteioVO['campanhaSorteio']['premio']),
-                            CommonDataItemTitleText("Campanha Referência", widget._usuariocampanhasorteioVO['campanha']['nome']),
+                            CommonDataItemTitleText("Campanha Referência", widget._usuariocampanhasorteioVO['campanhaSorteio']['nome']),
+                            CommonDataItemTitleText("URL Regulamento", widget._usuariocampanhasorteioVO['campanhaSorteio']['urlRegulamento'], color: Colors.blue[800]),
                             CommonDataItemTitleText("Patrocinado por", widget._usuariocampanhasorteioVO['usuario']['apelido']),
                           ],
                         ),
