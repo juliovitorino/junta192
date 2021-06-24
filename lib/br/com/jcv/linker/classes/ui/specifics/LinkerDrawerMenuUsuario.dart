@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/qrcode/common-get-qrcode.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share/share.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'package:junta192/br/com/jcv/linker/classes/campanha/campanhaPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
@@ -32,16 +35,18 @@ class  LinkerDrawerMenuUsuario extends StatefulWidget {
 
 class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
   String _token;
-  //String _urlControlador;
   String _nomeusuario = '.';
   String _emailusuario = '.';
   String _urlfoto;
+  String _urlControlador;
+  String qrcode;
 
   @override
   void initState(){
 //    print(CacheSession().getSession()['usuariodto'].toString());
     super.initState();
     _token = CacheSession().getSession()['tokenid'];
+    _urlControlador = GlobalStartup().getGateway() + "/";
     _nomeusuario = CacheSession().getSession()['usuariodto']['apelido'];
     _urlfoto = CacheSession().getSession()['usuariodto']['urlfoto'];
       setState(() {
@@ -50,6 +55,22 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
       });
   }  
 
+  Future<String> abrirPaginaCapturarQrCode(BuildContext context) async {
+    final result = await Navigator.push(context, 
+      MaterialPageRoute(builder: (context) => new CommonGetQRCode() )
+    );
+    return result;
+  } 
+
+
+  Future<Map> _inserirRegistroIndicacao() async {
+    http.Response response;
+    String _url = '${_urlControlador}appInserirRegistroIndicacao.php?tokenid=$_token&tokenidui=$qrcode';
+
+    debugPrint(_url);
+    response = await http.get(Uri.parse(_url));
+    return (json.decode(response.body));
+  }
 
   @override
   Widget build(BuildContext context){
@@ -122,6 +143,24 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                                                      );
                                 }, 
                                 null),
+              new LinkerListTile(const IconData(0xee49, fontFamily: 'MaterialIcons'), "Campanha de Indicação", () async {
+                  qrcode =  await abrirPaginaCapturarQrCode(context);
+                  print("*****************************");              
+                  print("Qrcode capturado = $qrcode");              
+                  print("*****************************");  
+                  _inserirRegistroIndicacao().then((mapa){
+                    final msg = mapa['msgcode'] == "MSG-0001"
+                                ? "Sua indicação foi registrada com sucesso"
+                                : mapa['msgcodeString'];
+                    CommonShowDialogYesNo csdyn = new CommonShowDialogYesNo(
+                      context: context,
+                      icon: Icon(Icons.info),
+                      msg: msg,
+                    )
+                    ..showDialogYesNo();
+                  }); 
+
+              }, null), 
               new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
               //new LinkerListTile(Icons.group, 'Indique um amigo', ()=>{},null),
               //new LinkerListTile(Icons.person, 'Meu Perfil', ()=>{},null),

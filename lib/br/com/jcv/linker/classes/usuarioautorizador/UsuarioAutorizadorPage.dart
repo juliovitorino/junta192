@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'dart:convert';
+import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-loading.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 import 'package:junta192/br/com/jcv/linker/classes/usuarioautorizador/UsuarioAutorizadorQRCodeIDClientePage.dart';
