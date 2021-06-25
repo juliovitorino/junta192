@@ -137,7 +137,7 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                                     sb.writeln("Para instalar no seu aparelho baixe pelo link abaixo:");
                                     sb.writeln(" ");
                                     sb.writeln("Android -> http://bit.ly/junta10");
-                                    sb.writeln("iPhone *em breve*");
+                                    sb.writeln("iPhone -> http://bit.ly/junta10iOS");
                                     await Share.share( sb.toString(),
                                                       subject: "Compartilhe com amigos e clientes"
                                                      );

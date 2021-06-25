@@ -359,6 +359,16 @@ print(fotourl);
         versao);
 print("GatewaySSL ==>" + GlobalStartup().getGatewaySsl())        ;
 print("Versao ==>" + GlobalStartup().getVersao())        ;
+
+print("*** Dados do post ****");
+print("*** idfcbk ==> $idfcbk ****");
+print("*** usernamepost ==> $usernamepost ****");
+print("*** emailfcbk ==> $emailfcbk ****");
+print("*** fotourl ==> $fotourl ****");
+print("*** versao ==> $versao ****");
+print("*** Dados do post ****");
+
+print("Post para ==>" + GlobalStartup().getGatewaySsl() + '/appFacebookAutenticacao.php');
     LoginFacebookPost p = await createPost(GlobalStartup().getGatewaySsl() + '/appFacebookAutenticacao.php', body: newPost.toMap());
     return p;
   }
@@ -384,6 +394,13 @@ print("Versao ==>" + GlobalStartup().getVersao())        ;
         emailfcbk,
         fotourl,
         versao);
+print("*** Dados do post ****");
+print("*** idfcbk ==> $idfcbk ****");
+print("*** emailfcbk ==> $emailfcbk ****");
+print("*** fotourl ==> $fotourl ****");
+print("*** versao ==> $versao ****");
+print("*** Dados do post ****");
+
     LoginFacebookPost p = await createPost(GlobalStartup().getGatewaySsl() + '/appFacebookAutenticacao.php', body: newPost.toMap());
 //    LoginFacebookPost p = await createPost('http://elitefinanceira.com/cfdi/php/classes/gateway/appFacebookAutenticacao.php', body: newPost.toMap());
     return p;
