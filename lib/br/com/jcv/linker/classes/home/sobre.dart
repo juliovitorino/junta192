@@ -21,6 +21,7 @@ class Sobre extends StatelessWidget {
                   CommonDataItemTitleText("Versão", GlobalStartup().getVersaoMin()),
                   CommonDataItemTitleText("Versão Build", GlobalStartup().getVersao()),
                   CommonDataItemTitleText("SSID", _token.substring(0,4) + "******" + _token.substring(_token.length-4, _token.length)),
+                  CommonDataItemTitleText("Código de indicação", CacheSession().getSession()['usuariodto']['id']),
                   Platform.isIOS
                   ? CommonDataItemTitleText("Requer Dispositivo", "iPhone 7 ou superior")
                   : CommonDataItemTitleText("Requer Android", "6.0 (Marshmellow) ou superior"),
