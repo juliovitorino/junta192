@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
@@ -648,9 +649,11 @@ print("*** Dados do post ****");
                                         new BorderRadius.circular(28.0)),
                                     splashColor: Colors.white,
                                     color: Colors.white,
-                                    child: Icon(
-                                      const IconData(0xf8ff, fontFamily: 'icomoon'),
-                                      color: Color(0Xff000000)),
+                                    child: Platform.isIOS
+                                      ? Icon(
+                                        const IconData(0xf8ff, fontFamily: 'icomoon'),
+                                            color: Color(0Xff000000))
+                                      : Image.asset(imgAppleIcon),
                                     onPressed: _onLoginAppleClick,
                                   ),
                                 ),

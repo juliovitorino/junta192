@@ -101,6 +101,7 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
+    - assets/images/apple-logo-24x24.png
     - assets/images/no-user.png
     - assets/images/qrcode.png
     - assets/images/dart-flutter.jpg
