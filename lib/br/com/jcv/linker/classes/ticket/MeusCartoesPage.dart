@@ -80,21 +80,21 @@ class _MeusCartoesDigitaisPageState extends State<MeusCartoesDigitaisPage> {
               Column(
                 children: <Widget>[
                   Icon(Icons.replay_10),
-                  AutoSizeText("+Recente", style: TextStyle(fontSize: 12.0), maxLines: 1),
+                  AutoSizeText("+Novos", style: TextStyle(fontSize: 12.0), maxLines: 1),
                   SizedBox(height: 8.0,)
                 ],
               ),
               Column(
                 children: <Widget>[
                   Icon(Icons.credit_card),
-                  AutoSizeText("Em aberto", style: TextStyle(fontSize: 12.0), maxLines: 1),
+                  AutoSizeText("Abertos", style: TextStyle(fontSize: 12.0), maxLines: 1),
                   SizedBox(height: 8.0,)
                 ],
               ),
               Column(
                 children: <Widget>[
                   Icon(Icons.check),
-                  AutoSizeText("Completo", style: TextStyle(fontSize: 12.0), maxLines: 1),
+                  AutoSizeText("Cheio", style: TextStyle(fontSize: 12.0), maxLines: 1),
                   SizedBox(height: 8.0,)
                 ],
               ),
