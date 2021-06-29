@@ -34,7 +34,7 @@ flutter run -d 00008020-001E2921340B002E
 flutter build ios --no-tree-shake-icons
 flutter install -d 00008020-001E2921340B002E
 
-flutter build ios --release --no-tree-shake-icons
+flutter build ios --release --no-tree-shake-icons --verbose
 flutter install -d <id-do-telefone>
 
 #peparar o archive pra ser validado no XCode e evitar o erro codepoint XXXXX not found in font
