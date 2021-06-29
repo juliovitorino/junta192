@@ -1,17 +1,10 @@
-
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:junta10/br/com/jcv/linker/classes/registroindicacao/RegistroIndicacaoVOPost.dart';
-import 'package:junta10/br/com/jcv/linker/classes/storages/cacheSession.dart';
-import 'package:junta10/br/com/jcv/linker/classes/ui/common/common-actionbutton.dart';
-import 'package:junta10/br/com/jcv/linker/classes/ui/common/common-showdialog.dart';
+import 'package:junta192/br/com/jcv/linker/classes/registroindicacao/RegistroIndicacaoVOPost.dart';
+import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-actionbutton.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-showdialog.dart';
 
 Future<RegistroIndicacaoVOPost> createPost(String url, {Map body}) async {
   return http.post(Uri.parse(url), body: body).then((http.Response response) {
@@ -48,51 +41,6 @@ class _RegistroIndicacaoPageCRUDState extends State<RegistroIndicacaoPageCRUD> {
   TextEditingController tecid = new TextEditingController();
   TextEditingController tecidUsuarioPromotor = new TextEditingController();
   TextEditingController tecidUsuarioIndicado = new TextEditingController();
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
   TextEditingController tecstatus = new TextEditingController();
   TextEditingController tecdataCadastro = new TextEditingController();
   TextEditingController tecdataAtualizacao = new TextEditingController();
@@ -105,51 +53,6 @@ class _RegistroIndicacaoPageCRUDState extends State<RegistroIndicacaoPageCRUD> {
     tecid.text = widget.registroindicacao_full['id'];
     tecidUsuarioPromotor.text = widget.registroindicacao_full['idUsuarioPromotor'];
     tecidUsuarioIndicado.text = widget.registroindicacao_full['idUsuarioIndicado'];
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
     tecstatus.text = widget.registroindicacao_full['status'];
     tecdataCadastro.text = widget.registroindicacao_full['dataCadastro'];
     tecdataAtualizacao.text = widget.registroindicacao_full['dataAtualizacao'];
@@ -168,77 +71,32 @@ class _RegistroIndicacaoPageCRUDState extends State<RegistroIndicacaoPageCRUD> {
     tecid.text = _iscadastro ? '' : widget.registroindicacaoVO.id;
     tecidUsuarioPromotor.text = _iscadastro ? '' : widget.registroindicacaoVO.idUsuarioPromotor;
     tecidUsuarioIndicado.text = _iscadastro ? '' : widget.registroindicacaoVO.idUsuarioIndicado;
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
     tecstatus.text = _iscadastro ? '' : widget.registroindicacaoVO.status;
     tecdataCadastro.text = _iscadastro ? '' : widget.registroindicacaoVO.dataCadastro;
     tecdataAtualizacao.text = _iscadastro ? '' : widget.registroindicacaoVO.dataAtualizacao;
 
   }
 
-  // ===============================================
-  // função que cria o widget  base entrada de dados
-  // ===============================================
-  Widget criarWidgetEntry({TextEditingController tec, TextInputType tit, String label}) => Padding(
-      padding: EdgeInsets.only(top: 8.0),
-      child: TextField(
-          controller: tec,
-          keyboardType: tit,
-          decoration: InputDecoration(
-                labelText: label,
-                labelStyle: TextStyle(color: Colors.black),
-                border: OutlineInputBorder()
-            ),
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 15.0
-        ),
-      ),
-    );
-  
+  // ===============================================
+  // função que cria o widget  base entrada de dados
+  // ===============================================
+  Widget criarWidgetEntry({TextEditingController tec, TextInputType tit, String label}) => Padding(
+      padding: EdgeInsets.only(top: 8.0),
+      child: TextField(
+          controller: tec,
+          keyboardType: tit,
+          decoration: InputDecoration(
+                labelText: label,
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder()
+            ),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 15.0
+        ),
+      ),
+    );
+  
 
 
   @override
@@ -249,57 +107,12 @@ class _RegistroIndicacaoPageCRUDState extends State<RegistroIndicacaoPageCRUD> {
     // ============================================================================
     // Criação dos campos que irão permitir a entrada de dados
     // ============================================================================
-    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecid, tit: TextInputType.text, label: "ID Registro Indicação"));
-    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecidUsuarioPromotor, tit: TextInputType.text, label: "ID do usuário Promotor"));
-    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecidUsuarioIndicado, tit: TextInputType.text, label: "ID do usuário Indicado"));
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecstatus, tit: TextInputType.text, label: "Status"));
-    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecdataCadastro, tit: TextInputType.text, label: "Data de Cadastro"));
-    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecdataAtualizacao, tit: TextInputType.text, label: "Data de Atualização"));
+    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecid, tit: TextInputType.text, label: "ID Registro Indicação"));
+    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecidUsuarioPromotor, tit: TextInputType.text, label: "ID do usuário Promotor"));
+    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecidUsuarioIndicado, tit: TextInputType.text, label: "ID do usuário Indicado"));
+    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecstatus, tit: TextInputType.text, label: "Status"));
+    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecdataCadastro, tit: TextInputType.text, label: "Data de Cadastro"));
+    _lstCamposRegistroIndicacao.add(criarWidgetEntry(tec: tecdataAtualizacao, tit: TextInputType.text, label: "Data de Atualização"));
 
     // ==================================================================================
     // Move os conteúdos dos controladores para um VO para enviar um Mapa JSON ao backend
@@ -312,51 +125,6 @@ class _RegistroIndicacaoPageCRUDState extends State<RegistroIndicacaoPageCRUD> {
               id: widget.registroindicacaoVO == null ? 0: widget.registroindicacaoVO.id,
               idUsuarioPromotor: tecidUsuarioPromotor.text, 
               idUsuarioIndicado: tecidUsuarioIndicado.text, 
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
               status: tecstatus.text, 
               dataCadastro: tecdataCadastro.text, 
               dataAtualizacao: tecdataAtualizacao.text, 

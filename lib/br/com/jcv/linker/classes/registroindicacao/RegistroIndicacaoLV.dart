@@ -1,11 +1,5 @@
-
-
-
-
-
-
 import 'package:flutter/material.dart';
-import 'package:junta10/br/com/jcv/linker/classes/ui/common/common-msgcode.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-msgcode.dart';
 
 import 'RegistroIndicacaoUI.dart';
 

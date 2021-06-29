@@ -8,10 +8,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:junta10/br/com/jcv/linker/classes/ui/common/common-flatbutton-function.dart';
-import 'package:junta10/br/com/jcv/linker/classes/ui/common/common-image-circle.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-flatbutton-function.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-image-circle.dart';
 
-import 'package:junta10/br/com/jcv/linker/classes/storages/cacheSession.dart';
+import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 
 class RegistroIndicacaoUI extends StatefulWidget {
 
@@ -27,7 +27,7 @@ class _RegistroIndicacaoUIState extends State<RegistroIndicacaoUI> {
 
   String _token;
   String _urlControlador;
-   bool _isVisibleActionBtn = false;
+   bool _isVisibleActionBtn = false;
 
   @override
   initState() {
@@ -38,14 +38,14 @@ class _RegistroIndicacaoUIState extends State<RegistroIndicacaoUI> {
   @override
   Widget build(BuildContext context) {
 
-    // Toolbar com botões de ação
-    Widget _widActionBtn = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}),
-        CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){}),
-      ],
-    );
+    // Toolbar com botões de ação
+    Widget _widActionBtn = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}),
+        CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){}),
+      ],
+    );
 
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
@@ -73,51 +73,6 @@ class _RegistroIndicacaoUIState extends State<RegistroIndicacaoUI> {
                         Text(widget._registroindicacaoVO['id'] ,style: TextStyle(fontSize: 14, color: Colors.black)),
                         Text(widget._registroindicacaoVO['idUsuarioPromotor'] ,style: TextStyle(fontSize: 14, color: Colors.black)),
                         Text(widget._registroindicacaoVO['idUsuarioIndicado'] ,style: TextStyle(fontSize: 14, color: Colors.black)),
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
-#VALOR!
                         Text(widget._registroindicacaoVO['status'] ,style: TextStyle(fontSize: 14, color: Colors.black)),
                         Text(widget._registroindicacaoVO['dataCadastro'] ,style: TextStyle(fontSize: 14, color: Colors.black)),
                         Text(widget._registroindicacaoVO['dataAtualizacao'] ,style: TextStyle(fontSize: 14, color: Colors.black)),

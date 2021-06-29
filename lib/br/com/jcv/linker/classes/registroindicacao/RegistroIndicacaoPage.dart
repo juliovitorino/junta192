@@ -7,8 +7,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:junta10/br/com/jcv/linker/classes/ui/common/common-loading.dart';
-import 'package:junta10/br/com/jcv/linker/classes/storages/cacheSession.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-loading.dart';
+import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 
 import 'RegistroIndicacaoLV.dart';
 import 'RegistroIndicacaoPageCRUD.dart';
