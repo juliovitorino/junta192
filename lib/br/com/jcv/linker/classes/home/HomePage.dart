@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cashback/SaldoCashbackCCPage.dart';
+import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/session_storage.dart';
 //import 'package:junta10/br/com/jcv/linker/classes/ticket/DoarMeusCarimbos.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ticket/MeusCartoesFavoritos.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ticket/MeusCartoesPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ticket/ValidarTicketPage.dart';
+import 'package:junta192/br/com/jcv/linker/classes/usuariocampanhasorteio/UsuarioCampanhaSorteioPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/usuarionotificacao/UsuarioNotificacaoContainer.dart';
 
 
@@ -32,7 +34,8 @@ class _HomePageState extends State<HomePage> {
     new MeusCartoesDigitaisPage( session: new SessionStorage()),
     new MeusCartoesFavoritosPage(session: new SessionStorage()),
     new SaldoCashbackCCPage(),
-    new UsuarioNotificacaoContainer() 
+    new UsuarioNotificacaoContainer(),
+    new UsuarioCampanhaSorteioPage() 
   ];
 
   //Widget _drawerMenuApp;
@@ -88,6 +91,10 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _body, 
       drawer: widget.drawerMenu,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){fcnAcionarAjudaComoFunciona(context);},
+        child: Icon(Icons.help, size: 35.0),
+      ),
       bottomNavigationBar: new CurvedNavigationBar(
         index: 0,
         height: 65.0,
@@ -97,6 +104,7 @@ class _HomePageState extends State<HomePage> {
           Icon(Icons.favorite, size: 20),
           Icon(Icons.monetization_on, size: 20),
           Icon(Icons.notifications_active, size: 20),
+          Icon(Icons.casino, size: 20),
         ],
         color: Colors.amberAccent,
         buttonBackgroundColor: Colors.amberAccent,
@@ -121,6 +129,9 @@ class _HomePageState extends State<HomePage> {
                 break;
               case 4:
                 _titulo = "Notificações para mim";
+                break;
+              case 5:
+                _titulo = "Meus Sorteios";
                 break;
               default:
                 _titulo = "Carimbar Cartela";

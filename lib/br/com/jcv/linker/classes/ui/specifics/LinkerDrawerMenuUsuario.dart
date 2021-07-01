@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/qrcode/common-get-qrcode.dart';
+import 'package:junta192/br/com/jcv/linker/classes/usuariocashback/UsuarioCashbackPage.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share/share.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'package:junta192/br/com/jcv/linker/classes/campanha/campanhaPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
@@ -32,16 +36,18 @@ class  LinkerDrawerMenuUsuario extends StatefulWidget {
 
 class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
   String _token;
-  //String _urlControlador;
   String _nomeusuario = '.';
   String _emailusuario = '.';
   String _urlfoto;
+  String _urlControlador;
+  String qrcode;
 
   @override
   void initState(){
 //    print(CacheSession().getSession()['usuariodto'].toString());
     super.initState();
     _token = CacheSession().getSession()['tokenid'];
+    _urlControlador = GlobalStartup().getGateway() + "/";
     _nomeusuario = CacheSession().getSession()['usuariodto']['apelido'];
     _urlfoto = CacheSession().getSession()['usuariodto']['urlfoto'];
       setState(() {
@@ -50,6 +56,22 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
       });
   }  
 
+  Future<String> abrirPaginaCapturarQrCode(BuildContext context) async {
+    final result = await Navigator.push(context, 
+      MaterialPageRoute(builder: (context) => new CommonGetQRCode() )
+    );
+    return result;
+  } 
+
+
+  Future<Map> _inserirRegistroIndicacao() async {
+    http.Response response;
+    String _url = '${_urlControlador}appInserirRegistroIndicacao.php?tokenid=$_token&tokenidui=$qrcode';
+
+    debugPrint(_url);
+    response = await http.get(Uri.parse(_url));
+    return (json.decode(response.body));
+  }
 
   @override
   Widget build(BuildContext context){
@@ -105,6 +127,42 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                                         GlobalStartup().getwhatsappSuporteMsg()
                                 ),
                                 null),
+              new LinkerListTile(Icons.share_outlined, 
+                                "Compartilhe com Amigos", 
+                                () async {
+                                    final StringBuffer sb = new StringBuffer();
+                                    sb.writeln("Olá essa é uma mensagem enviada pelo");
+                                    sb.writeln("seu amigo *$_nomeusuario* que está te convidando para se juntar ao aplicativo *Junta10*");
+                                    sb.writeln("e começar a *GANHAR VANTAGENS* no comércio da região.");
+                                    sb.writeln(" ");
+                                    sb.writeln("Para instalar no seu aparelho baixe pelo link abaixo:");
+                                    sb.writeln(" ");
+                                    sb.writeln("Android -> http://bit.ly/junta10");
+                                    sb.writeln("iPhone -> http://bit.ly/junta10iOS");
+                                    await Share.share( sb.toString(),
+                                                      subject: "Compartilhe com amigos e clientes"
+                                                     );
+                                }, 
+                                null),
+              new LinkerListTile(const IconData(0xee49, fontFamily: 'MaterialIcons'), "Campanha de Indicação", () async {
+                  qrcode =  await abrirPaginaCapturarQrCode(context);
+                  print("*****************************");              
+                  print("Qrcode capturado = $qrcode");              
+                  print("*****************************");  
+                  _inserirRegistroIndicacao().then((mapa){
+                    final msg = mapa['msgcode'] == "MSG-0001"
+                                ? "Sua indicação foi registrada com sucesso"
+                                : mapa['msgcodeString'];
+                    CommonShowDialogYesNo csdyn = new CommonShowDialogYesNo(
+                      context: context,
+                      icon: Icon(Icons.info),
+                      msg: msg,
+                    )
+                    ..showDialogYesNo();
+                  }); 
+
+              }, null), 
+              new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
               //new LinkerListTile(Icons.group, 'Indique um amigo', ()=>{},null),
               //new LinkerListTile(Icons.person, 'Meu Perfil', ()=>{},null),
               //new LinkerListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{},null),

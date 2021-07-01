@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-dataitem-title-text.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-actionbutton.dart';
 import 'package:junta192/br/com/jcv/linker/classes/campanha/campanhaPerformancePage.dart';
@@ -30,10 +31,12 @@ class CampanhaDetail extends StatelessWidget {
               new CommonDataItemTitleText("Cartões Distribuídos",_cartaofull['contadorCartoes'].toString() ),
             ]
           ),
-          new CommomActionButton(titulo: "Ver Performance" , onpressed: (){
-            Navigator.push(context,
+          CacheSession().getSession()['isGratuito'] == '1'
+          ? new CommomActionButton(titulo: "Ver Performance" , onpressed: (){
+              Navigator.push(context,
                 MaterialPageRoute(builder: (context) => new CampanhaPerformancePage(this._cartaofull) ) );
-          }),
+            })
+          : Container(height: 0,width: 0),
 
         ],
       ),

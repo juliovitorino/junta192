@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -110,7 +111,7 @@ class _AdsRoyalTypeOneState extends State<AdsRoyalTypeOne> {
                         border: new Border.all(color: widget.corBordaTitulo == null ? Colors.transparent : widget.corBordaTitulo),
                         color: widget.corFundoTitulo == null ? Colors.yellow : widget.corFundoTitulo,
                       ),                    
-                    child: new Center(child: Text(widget.titulo, style: TextStyle(fontSize: 16.0)))
+                    child: new Center(child: AutoSizeText(widget.titulo, style: TextStyle(fontSize: 16.0), maxLines: 2,))
                   ),
                   Container(
                     height: 50.0,

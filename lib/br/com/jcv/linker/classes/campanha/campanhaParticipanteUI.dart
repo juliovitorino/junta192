@@ -142,6 +142,28 @@ class _CampanhaParticipanteUIState extends State<CampanhaParticipanteUI> {
 
   }
 
+  String _nomeReduzido(String nome) {
+    List<String> aPartesNome = nome.split(" ");
+    if(aPartesNome.length <= 2) {
+      return nome;
+    }
+
+    StringBuffer sb = StringBuffer();
+    for (int i = 0; i < aPartesNome.length; i++) {
+      if(aPartesNome[i].length > 3) { // "String do tipo: dos do de e "
+        if(i == 0 || i == aPartesNome.length-1) {
+          sb.write(aPartesNome[i]);
+          sb.write( " ");
+        } else {
+          sb.write(aPartesNome[i].substring(0,1));
+          sb.write( ". ");
+        }
+      }     
+    }
+    return sb.toString();
+
+  }
+
 
 
   @override
@@ -169,9 +191,9 @@ class _CampanhaParticipanteUIState extends State<CampanhaParticipanteUI> {
                           children: <Widget>[
                             Icon(Icons.person),
                             _hasmatch
-                                ? Text(widget._cartaofull['usuario']['apelido'] + " (" +widget._cartaofull['usuario']['email'] + ")",
+                                ? Text(_nomeReduzido(widget._cartaofull['usuario']['apelido']) + " (" +widget._cartaofull['usuario']['email'] + ")",
                                 style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))
-                                : Text(widget._cartaofull['usuario']['apelido'],
+                                : Text(_nomeReduzido(widget._cartaofull['usuario']['apelido']),
                                 style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))
                           ],
                         ),

@@ -22,7 +22,7 @@ class _ComoFuncionaPageState extends State<ComoFuncionaPage> {
     ..addAssistentePageItem(new AssistenteModel(imgReadQrCode
       , 'Capture o seu QR Code', 'Registre no seu celular o seu QR Code usando o capturador do Junta10.'))
     ..addAssistentePageItem(new AssistenteModel(imgCheckStar
-      , 'Confira sua cartão digital', 'Se quiser, confira seu cartão digital com o registro do fornecedor. Junte até completar.'));
+      , 'Confira seu cartão digital', 'Se quiser, confira seu cartão digital com o registro do fornecedor. Junte até completar.'));
 
     return Scaffold(
       appBar: new AppBar(title: Text("Como Funciona"),),

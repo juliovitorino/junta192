@@ -3,7 +3,7 @@
 >> mostrar o status do git remoto e local
 $ git remote show origin
 
->> criar um branch local com base em outro
+>> criar um branch local com base em outro remoto ou local
 $ git checkout -b <branch-novo-a-ser-criado> <branch-local-usado-como-ref>
 
 >> para configurar o branch remoto com o branch local:
@@ -11,3 +11,11 @@ $ git branch --set-upstream-to=origin/<branch-remoto> <seu-branch-local>
 
 >> fazer um push para um branch especifico no remoto
 $ git push origin HEAD:<branch-remoto>  
+
+>> fazer uma overwrite de algum arquivo do repositorio em cima do local
+git <seu-branch-local> 
+git checkout <origin/[branch-remoto]> path/to/file
+
+>> fazer merge de um branch para outro
+git <seu-branch-local-receptor> 
+git merge <seu-branch-local-de-mudancas>

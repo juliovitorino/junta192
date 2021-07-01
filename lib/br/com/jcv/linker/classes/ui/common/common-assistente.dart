@@ -101,22 +101,11 @@ class _CommonAssistenteState extends State<CommonAssistente> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
 
-              index == (widget.lst.length-1)
+              (index == (widget.lst.length-1) || index == 0)
               ? Container(height: 0, width: 0,)
               : TextButton(
                   onPressed: _changePageBack,
                   child: Text("ANTERIOR"),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white)
-                  ),
-                ),
-
-              index == (widget.lst.length-1) 
-              ? Container(height: 0, width: 0,)
-              : TextButton(
-                  onPressed: _changePageItem,
-                  child: Text("PRÓXIMO"),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.white)
@@ -132,11 +121,21 @@ class _CommonAssistenteState extends State<CommonAssistente> {
                   backgroundColor:  index == (widget.lst.length-1) 
                                     ? MaterialStateProperty.all<Color>(Colors.green)
                                     : MaterialStateProperty.all<Color>(Colors.white),
-                  foregroundColor:  index == (widget.lst.length-1) 
-                                    ? MaterialStateProperty.all<Color>(Colors.white)
-                                    : MaterialStateProperty.all<Color>(Colors.black38),
+                  foregroundColor:  MaterialStateProperty.all<Color>(Colors.white),
                 ),
               ),
+
+              index == (widget.lst.length-1) 
+              ? Container(height: 0, width: 0,)
+              : TextButton(
+                  onPressed: _changePageItem,
+                  child: Text("PRÓXIMO"),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white)
+                  ),
+                ),
+
                  
             ],
           ),

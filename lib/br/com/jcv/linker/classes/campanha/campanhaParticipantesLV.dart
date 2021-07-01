@@ -16,9 +16,15 @@ class CampanhaParticipantesLV extends StatefulWidget {
 class _CampanhaParticipantesLVState extends State<CampanhaParticipantesLV> {
   @override
   Widget build(BuildContext context) {
-    debugPrint(widget._pagina['lst'].length.toString());
-    return widget._pagina['lst'].length == 0
-        ? new CommonMsgCode(msgcode: "LNK-0042", msgcodeString: "Nenhum cartão encontrado.")
+    bool erro = false;
+    if(widget._pagina['msgcode'] == 'MSG-0083' ||
+       widget._pagina['msgcode'] == 'MSG-0095'     
+       ) {
+      erro = true;
+    }
+
+    return erro
+        ? new CommonMsgCode(msgcode: "LNK-0042", msgcodeString: widget._pagina['msgcodeString'])
         : new ListView.builder(
       itemCount: widget._pagina['lst'].length,
       itemBuilder: (BuildContext context, int index){

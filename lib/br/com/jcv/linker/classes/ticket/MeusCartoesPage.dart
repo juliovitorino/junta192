@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
@@ -79,28 +80,28 @@ class _MeusCartoesDigitaisPageState extends State<MeusCartoesDigitaisPage> {
               Column(
                 children: <Widget>[
                   Icon(Icons.replay_10),
-                  Text("+Recente", style: TextStyle(fontSize: 12.0),),
+                  AutoSizeText("+Novos", style: TextStyle(fontSize: 12.0), maxLines: 1),
                   SizedBox(height: 8.0,)
                 ],
               ),
               Column(
                 children: <Widget>[
                   Icon(Icons.credit_card),
-                  Text("Em aberto", style: TextStyle(fontSize: 12.0),),
+                  AutoSizeText("Abertos", style: TextStyle(fontSize: 12.0), maxLines: 1),
                   SizedBox(height: 8.0,)
                 ],
               ),
               Column(
                 children: <Widget>[
                   Icon(Icons.check),
-                  Text("Completo", style: TextStyle(fontSize: 12.0),),
+                  AutoSizeText("Cheio", style: TextStyle(fontSize: 12.0), maxLines: 1),
                   SizedBox(height: 8.0,)
                 ],
               ),
               Column(
                 children: <Widget>[
                   Icon(Icons.all_inclusive),
-                  Text("Resgate", style: TextStyle(fontSize: 12.0),),
+                  AutoSizeText("Resgate", style: TextStyle(fontSize: 12.0), maxLines: 1),
                   SizedBox(height: 8.0,)
                 ],
               ),

@@ -16,6 +16,7 @@
 
 final String pathHome = "assets/images";
 // paths para imagens
+final String imgAppleIcon = "$pathHome/apple-logo-24x24.png";
 final String imgDartFlutter = "$pathHome/dart-flutter.jpg";
 final String imgFacebook = "$pathHome/facebook.png";
 final String imgFullBloom = "$pathHome/full-bloom.png";

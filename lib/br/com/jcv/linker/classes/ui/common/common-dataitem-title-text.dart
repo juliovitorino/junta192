@@ -7,8 +7,9 @@ class CommonDataItemTitleText extends StatelessWidget {
   String title;
   String text;
   double sizetext;
+  Color color;
 
-  CommonDataItemTitleText(this.title, this.text, {this.sizetext=16.0});
+  CommonDataItemTitleText(this.title, this.text, {this.sizetext=16.0, this.color=Colors.black54});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,13 @@ class CommonDataItemTitleText extends StatelessWidget {
 
       children: <Widget>[
         Text(this.title, 
-          style: TextStyle( fontWeight: FontWeight.bold, fontSize: 16.0
-
-        ),),
+          style: TextStyle( fontWeight: FontWeight.bold, fontSize: 16.0),
+          maxLines: 2,
+          ),
         Text(this.text, 
-          style: TextStyle( color: Colors.black54, fontSize: sizetext),),
+          style: TextStyle( color: color, fontSize: sizetext),
+          maxLines: 2,
+          ),
         Divider()
 
       ],

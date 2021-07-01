@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 
 import 'admob-custom.dart';
 
@@ -11,7 +12,9 @@ class AdMobBanner<T> implements AdMobCustomFactory<T> {
   @override
   T getBanner() {
     _bannerad = (BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
+      adUnitId: GlobalStartup().getAmbienteAtivo() == "DSV" 
+                ? BannerAd.testAdUnitId 
+                : AdMobCustomFactory.bannerAdUnitID ,
       size: AdSize.banner,
       request: AdRequest(),
       listener: AdListener(

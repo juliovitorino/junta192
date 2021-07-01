@@ -60,7 +60,7 @@ class _CampanhaCancelarState extends State<CampanhaCancelar> {
       child: Column(
         children: <Widget>[
           new CampanhaDetail(widget._cartaofull),
-          CommomActionButton(titulo: "Cancelar Campanha", onpressed:() async {
+          CommomActionButton(titulo: "Cancelar Campanha", color: Colors.red, onpressed:() async {
             CommonShowDialogYesNo retorno = new CommonShowDialogYesNo(
               context: context,
               icon: Icon(Icons.help_outline, size: 120.0, color: Colors.red,),

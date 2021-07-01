@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class CommomActionButton extends StatelessWidget {
@@ -18,8 +19,10 @@ class CommomActionButton extends StatelessWidget {
               onPressed: onpressed,
               child: Padding(
                 padding: EdgeInsets.all(5.0),
-                child: Text(titulo, 
-                        style: TextStyle(color: Colors.white, fontSize: 25.0)),
+                child: AutoSizeText(titulo, 
+                        style: TextStyle(color: Colors.white, fontSize: 25.0),
+                        maxLines: 1,
+                        ),
               ),
               color: color
             )

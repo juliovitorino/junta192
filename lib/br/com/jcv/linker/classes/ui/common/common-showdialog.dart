@@ -9,11 +9,13 @@ class CommonShowDialogYesNo extends Dialog {
   String textNo;
   BuildContext context;
   String choice;
+  String title;
 
   CommonShowDialogYesNo({Key key, 
   @required this.context, 
   @required this.icon, 
   @required this.msg, 
+  this.title='Mensagem',
   this.textYes='OK', 
   this.textNo}) : super(key: key);
 
@@ -62,38 +64,13 @@ class CommonShowDialogYesNo extends Dialog {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(msg),
+          title: Text(title),
           content: SingleChildScrollView(
-            child: Text(msg),
+            child: Text(msg,
+              style: TextStyle(fontSize: 18.0,color: Colors.black, fontWeight: FontWeight.bold), 
+            ),
           ),
-          actions: <Widget>[
-            new SimpleDialogOption(
-                                  onPressed: (){
-                                    Navigator.pop(context); 
-                                    choice='Y';
-                                  },
-                                  child: new Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                          Text(textYes, textAlign: TextAlign.right, 
-                                              style: TextStyle(fontSize: 18.0,color: Colors.blue, fontWeight: FontWeight.bold),)
-                                      ]
-                                    )
-                              ),
-            new SimpleDialogOption(
-                                    onPressed: (){
-                                      Navigator.pop(context); 
-                                      choice='N';
-                                    },
-                                    child: new Row(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
-                                        children: <Widget>[
-                                          Text(textNo, textAlign: TextAlign.right, 
-                                              style: TextStyle(fontSize: 18.0,color: Colors.blue, fontWeight: FontWeight.bold),)
-                                        ]
-                                      )
-                                )
-          ],
+          actions: lstSimpleDialogOption,
         );
       }
     );

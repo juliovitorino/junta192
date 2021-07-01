@@ -5,13 +5,14 @@ class CommonFlatButtonFunction extends StatelessWidget {
   Function function;
   Icon icon;
   String text;
+  Color color;
 
-  CommonFlatButtonFunction(this.icon, this.text, this.function);
+  CommonFlatButtonFunction(this.icon, this.text, this.function, {this.color=Colors.blue});
 
   @override
   Widget build(BuildContext context) {
     return  FlatButton(
-      color: Colors.blue,
+      color: color,
       onPressed: function ,
       child: Row(
         children: <Widget>[
