@@ -19,3 +19,13 @@ git checkout <origin/[branch-remoto]> path/to/file
 >> fazer merge de um branch para outro
 git <seu-branch-local-receptor> 
 git merge <seu-branch-local-de-mudancas>
+
+>>Tags Anotadas Criar uma tag anotada no Git é simples. A forma mais fácil é por especificar o parâmetro -a quando você executa o comando tag:
+
+git checkout master
+$ git tag -a <nome-da-tag> -m "<mensagem-da-tag>"
+$ git show <-nome-da-tag>
+
+>> Enviar tag para o github
+$ git tag
+$ git push origin <nome-da-tag>
