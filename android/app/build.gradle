@@ -44,8 +44,8 @@ android {
         applicationId "jcv.com.br.junta10"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 53
-        versionName "1.4.0.5.20210629.1611"
+        versionCode 54
+        versionName "1.4.1.5.20210708.1311"
     }
     // Configuração do projeto Google Sign In (28.03.2021)
     // https://medium.com/flutter-community/flutter-sign-in-with-google-in-android-without-firebase-a91b977d166f

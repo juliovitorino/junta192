@@ -78,7 +78,7 @@ class _SaldoCashbackCCUIState extends State<SaldoCashbackCCUI> {
 
   Future<Map> _transferirEntreMembrosCashbackCC() async {
     http.Response response;
-    String _url = '${_urlControlador}appTransferirEntreMembroCashbackCC.php?tokenid=${_token}&usuaid=${_usuaid}&donoid=${_donoid}&vlr=${_vlr}&desc=${_desc}';
+    String _url = '${_urlControlador}appTransferirEntreMembroCashbackCC.php?tokenid=$_token&usuaid=${_usuaid.rawContent}&donoid=$_donoid&vlr=$_vlr&desc=$_desc';
 
    debugPrint(_url);
     response = await http.get(Uri.parse(_url));
@@ -88,7 +88,7 @@ class _SaldoCashbackCCUIState extends State<SaldoCashbackCCUI> {
 
   Future<Map> _depositarCashbackCC() async {
     http.Response response;
-    String _url = '${_urlControlador}appTransferirCashbackCC.php?tokenid=${_token}&usuaid=${_usuaid}&vlr=${_vlr}&desc=${_desc}';
+    String _url = '${_urlControlador}appTransferirCashbackCC.php?tokenid=$_token&usuaid=${_usuaid.rawContent}&vlr=$_vlr&desc=$_desc';
 
    debugPrint(_url);
     response = await http.get(Uri.parse(_url));
@@ -97,7 +97,7 @@ class _SaldoCashbackCCUIState extends State<SaldoCashbackCCUI> {
 
   Future<Map> _liquidarCashbackCC() async {
     http.Response response;
-    String _url = '${_urlControlador}appLiquidarCashbackCC.php?tokenid=${_token}&usuaid=${_usuaid}&vlr=${_vlr}&desc=${_desc}';
+    String _url = '${_urlControlador}appLiquidarCashbackCC.php?tokenid=$_token&usuaid=${_usuaid.rawContent}&vlr=$_vlr&desc=$_desc';
 
    debugPrint(_url);
     response = await http.get(Uri.parse(_url));
