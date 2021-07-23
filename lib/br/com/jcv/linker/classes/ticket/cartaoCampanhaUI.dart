@@ -16,6 +16,7 @@ import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart'
 import 'package:junta192/br/com/jcv/linker/classes/ui/ads/ads-royal-typeOne.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-dataitem-title-text.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-showdialog.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/qrcode/common-get-qrcode.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/specifics/LinkerDataItem.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/specifics/LinkerDataItemBottom.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoPageDetail.dart';
@@ -44,6 +45,7 @@ class _CartaoCampanhaUIState extends State<CartaoCampanhaUI> {
   String _urlControlador;
   int _totalrating;
   String _hash;
+  String qrcode;
 
   @override
   initState() {
@@ -57,6 +59,13 @@ class _CartaoCampanhaUIState extends State<CartaoCampanhaUI> {
     _hash = widget._cartaofull['cartao']['hashresgate'];
     _israting = false;
   }
+
+  Future<String> abrirPaginaCapturarQrCode(BuildContext context) async {
+    final result = await Navigator.push(context, 
+      MaterialPageRoute(builder: (context) => new CommonGetQRCode() )
+    );
+    return result;
+  } 
 
   Future<Map> _confirmaRecebimento() async {
     http.Response response;
@@ -89,10 +98,20 @@ class _CartaoCampanhaUIState extends State<CartaoCampanhaUI> {
     });
   }
 
+  Future<Map> _transferirCartaoOutroUsuario() async {
+    http.Response response;
+    // Solicita a requisição na URL por enquanto sem callback
+    String url='${_urlControlador}appMoverCartao.php?tokenid=$_token&tokendest=$qrcode&cardid=$_id_cartao';
+print(url);
+    response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+  }
+
+
   Future<Map> _updateLike() async {
     http.Response response;
     // Solicita a requisição na URL por enquanto sem callback
-    String url='${_urlControlador}appCartaoLike.php?tokenid=${_token}&cardid=${_id_cartao}';
+    String url='${_urlControlador}appCartaoLike.php?tokenid=$_token&cardid=$_id_cartao';
 
     response = await http.get(Uri.parse(url));
     return json.decode(response.body);
@@ -335,7 +354,24 @@ class _CartaoCampanhaUIState extends State<CartaoCampanhaUI> {
                         child: new Row(
                           children: <Widget>[
                             new LinkerDataItemBottom(Icons.info , "Detalhes", pageAction: new CartaoPageDetail(widget._cartaofull)),
-                            //new LinkerDataItemBottom(Icons.compare_arrows , "Transferir",null),
+                            new LinkerDataItemBottom(Icons.compare_arrows , "Transferir", funcaoAction: () async {
+                              qrcode =  await abrirPaginaCapturarQrCode(context);
+                              print("*****************************");              
+                              print("Qrcode capturado = $qrcode");              
+                              print("*****************************");  
+
+                              if(qrcode.length > 0){
+                                _transferirCartaoOutroUsuario().then((mapa) {
+                                  final _dialog = new CommonShowDialogYesNo(
+                                    context: context, 
+                                    icon: Icon(Icons.info), 
+                                    msg: mapa['msgcodeString'])
+                                  ..showDialogYesNo();
+//                                  print(mapa['msgcodeString']);
+                                });
+                              }
+
+                            }),
                             //new LinkerDataItemBottom(Icons.record_voice_over , "Denunciar",null),
                         ],),
                       ),

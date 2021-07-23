@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/qrcode/common-get-qrcode.dart';
-import 'package:junta192/br/com/jcv/linker/classes/usuariocashback/UsuarioCashbackPage.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share/share.dart';
 import 'package:http/http.dart' as http;
