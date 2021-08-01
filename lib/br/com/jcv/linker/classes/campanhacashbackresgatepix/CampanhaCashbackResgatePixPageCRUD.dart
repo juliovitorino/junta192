@@ -39,7 +39,7 @@ class _CampanhaCashbackResgatePixPageCRUDState extends State<CampanhaCashbackRes
     // inicializa os controladores de campos com os respectivos atributos
     // ============================================================================
   TextEditingController tecid = new TextEditingController();
-  TextEditingController tecidCampanhaCashback = new TextEditingController();
+  TextEditingController tecidUsuarioDevedor = new TextEditingController();
   TextEditingController tecidUsuarioSolicitante = new TextEditingController();
   TextEditingController tectipoChavePix = new TextEditingController();
   TextEditingController tecchavePix = new TextEditingController();
@@ -65,7 +65,7 @@ class _CampanhaCashbackResgatePixPageCRUDState extends State<CampanhaCashbackRes
     // inicializa os controladores de campos com os respectivos atributos
     // ============================================================================
     tecid.text = _iscadastro ? '' : widget.campanhacashbackresgatepixVO.id;
-    tecidCampanhaCashback.text = _iscadastro ? '' : widget.campanhacashbackresgatepixVO.idCampanhaCashback;
+    tecidUsuarioDevedor.text = _iscadastro ? '' : widget.campanhacashbackresgatepixVO.idUsuarioDevedor;
     tecidUsuarioSolicitante.text = _iscadastro ? '' : widget.campanhacashbackresgatepixVO.idUsuarioSolicitante;
     tectipoChavePix.text = _iscadastro ? '' : widget.campanhacashbackresgatepixVO.tipoChavePix;
     tecchavePix.text = _iscadastro ? '' : widget.campanhacashbackresgatepixVO.chavePix;
@@ -114,7 +114,7 @@ class _CampanhaCashbackResgatePixPageCRUDState extends State<CampanhaCashbackRes
     // Criação dos campos que irão permitir a entrada de dados
     // ============================================================================
     _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecid, tit: TextInputType.text, label: "ID Resgate Cashback"));
-    _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecidCampanhaCashback, tit: TextInputType.text, label: "ID Campanha x Cashback"));
+    _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecidUsuarioDevedor, tit: TextInputType.text, label: "ID do usuário devedor"));
     _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecidUsuarioSolicitante, tit: TextInputType.text, label: "ID do usuário solicitante"));
     _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tectipoChavePix, tit: TextInputType.text, label: "Tipo da Chave PIX"));
     _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecchavePix, tit: TextInputType.text, label: "Chave PIX"));
@@ -139,7 +139,7 @@ class _CampanhaCashbackResgatePixPageCRUDState extends State<CampanhaCashbackRes
           CampanhaCashbackResgatePixVOPost newPost = new CampanhaCashbackResgatePixVOPost(
               tokenid: _token,
               id: widget.campanhacashbackresgatepixVO == null ? 0: widget.campanhacashbackresgatepixVO.id,
-              idCampanhaCashback: tecidCampanhaCashback.text, 
+              idUsuarioDevedor: tecidUsuarioDevedor.text, 
               idUsuarioSolicitante: tecidUsuarioSolicitante.text, 
               tipoChavePix: tectipoChavePix.text, 
               chavePix: tecchavePix.text, 

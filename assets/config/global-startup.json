@@ -14,7 +14,7 @@
       },
       {
         "ambiente" : "HMG",
-        "versao" : "1.4.2.1.20210723.1639",
+        "versao" : "1.4.3.1.20210801.1041",
         "gateway" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
         "gatewayssl" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
         "upload"  : "http://www.elitefinanceira.com/cfdi/php/classes/upload",

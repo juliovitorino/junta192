@@ -6,7 +6,12 @@ import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 
 import 'CampanhaCashbackResgatePixLV.dart';
 import 'CampanhaCashbackResgatePixPageCRUD.dart';
+
 class CampanhaCashbackResgatePixPage extends StatefulWidget {
+
+  dynamic _saldoCashbackCCVO;
+
+  CampanhaCashbackResgatePixPage(this._saldoCashbackCCVO);
 
   @override
   _CampanhaCashbackResgatePixPageState createState() => _CampanhaCashbackResgatePixPageState();
@@ -16,6 +21,7 @@ class _CampanhaCashbackResgatePixPageState extends State<CampanhaCashbackResgate
 
   String _token;
   String _urlControlador;
+  String _usuaid_devedor;
 
   int _pag = 1;
 
@@ -23,12 +29,13 @@ class _CampanhaCashbackResgatePixPageState extends State<CampanhaCashbackResgate
   _CampanhaCashbackResgatePixPageState initState(){
     _token = CacheSession().getSession()['tokenid'];
     _urlControlador = CacheSession().getSession()['urlControlador'];
+    _usuaid_devedor = widget._saldoCashbackCCVO['id_dono'];
 
   }
 
   Future<Map> _listCampanhaCashbackResgatePix() async {
     http.Response response;
-    String _url = '${_urlControlador}appListarCampanhaCashbackResgatePixPorUsuaIdStatus.php?tokenid=$_token&pag=$_pag';
+    String _url = '${_urlControlador}appListarCampanhaCashbackResgatePixPorUsuaIdUsuaIdDevedorStatus.php?tokenid=$_token&usuaidDevedor=$_usuaid_devedor&pag=$_pag';
 
     debugPrint(_url);
     response = await http.get(Uri.parse(_url));
