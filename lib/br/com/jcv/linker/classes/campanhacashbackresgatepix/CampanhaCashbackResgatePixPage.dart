@@ -52,7 +52,7 @@ floatingActionButton: new FloatingActionButton(
   onPressed: () {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => new CampanhaCashbackResgatePixPageCRUD() ),
+      MaterialPageRoute(builder: (context) => new CampanhaCashbackResgatePixPageCRUD(widget._saldoCashbackCCVO) ),
     );
   },
   child: Icon(Icons.add_circle_outline),

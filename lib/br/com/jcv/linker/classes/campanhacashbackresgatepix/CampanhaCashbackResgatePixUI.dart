@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:junta192/br/com/jcv/linker/classes/campanhacashbackresgatepix/CampanhaCashbackResgatePixVOPost.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-dataitem-title-text.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-flatbutton-function.dart';
-import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-image-circle.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
 
 class CampanhaCashbackResgatePixUI extends StatefulWidget {
