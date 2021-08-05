@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:junta192/br/com/jcv/linker/classes/campanhacashbackresgatepix/CampanhaCashbackResgatePixVOPost.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-dataitem-title-text.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-flatbutton-function.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-showdialog.dart';
 
 class CampanhaCashbackResgatePixUI extends StatefulWidget {
 
@@ -21,13 +26,54 @@ class _CampanhaCashbackResgatePixUIState extends State<CampanhaCashbackResgatePi
 
   String _token;
   String _urlControlador;
-   bool _isVisibleActionBtn = false;
+  bool _isVisibleActionBtn = false;
+  String _id;
 
   @override
   initState() {
     _token = CacheSession().getSession()['tokenid'];
     _urlControlador = CacheSession().getSession()['urlControlador'];
+    _id = widget._campanhacashbackresgatepixVO['id'];
+
+
   }
+
+
+  Future<Map> _apagarCampanhaCashbackResgatePix() async {
+    http.Response response;
+    // Solicita a requisição na URL por enquanto sem callback
+    String url='${_urlControlador}appApagarCampanhaCashbackResgatePix.php?tokenid=$_token&id=$_id';
+print(url);
+    response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+  }
+
+
+
+  void _apagarCampanhaCashbackResgatePixClick() {
+
+    CommonShowDialogYesNo apagarClick = CommonShowDialogYesNo(
+      context: context, 
+      icon: Icon(Icons.help, size: 120.0, color: Colors.blue), 
+      textYes: "Sim",
+      textNo: "Não",
+      msg: "Deseja REALMENTE APAGAR ?");
+
+    apagarClick.showDialogYesNo().then((value) {
+      if (apagarClick.getChoice() == "Y") {
+        _apagarCampanhaCashbackResgatePix().then((mapa) {
+          CommonShowDialogYesNo msgretorno = CommonShowDialogYesNo (
+            context: context,
+            icon: Icon(Icons.thumb_up, size: 120.0, color: Colors.blue) ,
+            msg: mapa['msgcodeString']
+          )..showDialogYesNo();
+        });
+      }
+
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +82,10 @@ class _CampanhaCashbackResgatePixUIState extends State<CampanhaCashbackResgatePi
     Widget _widActionBtn = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}),
-        CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){}),
+        //CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", (){}),
+        CommonFlatButtonFunction(Icon(Icons.cancel, color: Colors.white), "Apagar", (){
+          _apagarCampanhaCashbackResgatePixClick();
+        }, color: Colors.red[800]),
       ],
     );
 
