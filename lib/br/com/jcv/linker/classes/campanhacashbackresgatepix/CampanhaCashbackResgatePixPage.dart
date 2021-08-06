@@ -46,19 +46,17 @@ class _CampanhaCashbackResgatePixPageState extends State<CampanhaCashbackResgate
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("CampanhaCashbackResgatePix"),
+        title: new Text("Resgate por PIX"),
       ),
-floatingActionButton: new FloatingActionButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => new CampanhaCashbackResgatePixPageCRUD(widget._saldoCashbackCCVO) ),
-    );
-  },
-  child: Icon(Icons.add_circle_outline),
-),
-
-
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => new CampanhaCashbackResgatePixPageCRUD(widget._saldoCashbackCCVO) ),
+          );
+        },
+        child: Icon(Icons.add_circle_outline),
+      ),
       body: FutureBuilder(
         future: _listCampanhaCashbackResgatePix(),
         builder: (BuildContext context, AsyncSnapshot<Map> snapshot){

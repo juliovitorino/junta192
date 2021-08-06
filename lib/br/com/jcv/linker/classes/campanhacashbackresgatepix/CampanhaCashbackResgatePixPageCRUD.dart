@@ -44,6 +44,7 @@ class _CampanhaCashbackResgatePixPageCRUDState extends State<CampanhaCashbackRes
 
   @override
   void initState(){
+    _value = 0;
     _token = CacheSession().getSession()['tokenid'];
     _urlControlador = CacheSession().getSession()['urlControlador'];
     //_iscadastro = (widget._saldoCashbackCCVO == null);
@@ -86,28 +87,68 @@ class _CampanhaCashbackResgatePixPageCRUDState extends State<CampanhaCashbackRes
 
     List<Widget> _lstCamposCampanhaCashbackResgatePix = [];
 
+    DropdownButton _itemTipoPix() => DropdownButton<int>(
+      value: _value,
+      isExpanded: true,
+      onChanged: (value){
+        setState(() {
+         _value = value; 
+        });
+      },
+      items: [
+        DropdownMenuItem(
+          value: 0,
+          child: Text("CPF"),
+        ),
+        DropdownMenuItem(
+          value: 1,
+          child: Text("CNPJ"),
+        ),
+        DropdownMenuItem(
+          value: 2,
+          child: Text("Celular"),
+        ),
+        DropdownMenuItem(
+          value: 3,
+          child: Text("Email"),
+        ),
+        DropdownMenuItem(
+          value: 4,
+          child: Text("Chave Aleatória"),
+        ),
+      ],
+    );    
+
     // ============================================================================
     // Criação dos campos que irão permitir a entrada de dados
     // ============================================================================
-    _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tectipoChavePix, tit: TextInputType.text, label: "Tipo da Chave PIX"));
+    //_lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tectipoChavePix, tit: TextInputType.text, label: "Tipo da Chave PIX"));
+    _lstCamposCampanhaCashbackResgatePix.add(        
+      Padding(
+          padding: EdgeInsets.only(top: 8.0),
+          child: _itemTipoPix()
+        )
+    );
     _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecchavePix, tit: TextInputType.text, label: "Chave PIX"));
-    _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecvalorResgate, tit: TextInputType.text, label: "Valor Pretendido a Resgatar"));
+    _lstCamposCampanhaCashbackResgatePix.add(criarWidgetEntry(tec: tecvalorResgate, tit: TextInputType.numberWithOptions(decimal: true), label: "Valor Pretendido a Resgatar"));
 
     // ==================================================================================
     // Move os conteúdos dos controladores para um VO para enviar um Mapa JSON ao backend
     // ==================================================================================
     _lstCamposCampanhaCashbackResgatePix.add( 
-      new CommomActionButton(titulo: 'Salvar', 
+      new CommomActionButton(titulo: 'Salvar Pedido', 
           onpressed: () async {
           CampanhaCashbackResgatePixVOPost newPost = new CampanhaCashbackResgatePixVOPost(
               tokenid: _token,
               //id: widget.campanhacashbackresgatepixVO == null ? 0: widget.campanhacashbackresgatepixVO.id,
               idUsuarioDevedor: widget.saldoCashbackCCVO['id_dono'], 
               //idUsuarioSolicitante: tecidUsuarioSolicitante.text, 
-              tipoChavePix: tectipoChavePix.text, 
+//              tipoChavePix: tectipoChavePix.text, 
+              tipoChavePix: _value.toString(), 
               chavePix: tecchavePix.text, 
               valorResgate: tecvalorResgate.text, 
           );
+
     String _urlcrud ='${_urlControlador}appInserirCampanhaCashbackResgatePix.php';
     CampanhaCashbackResgatePixVOPost p = await createPost('$_urlcrud', body: newPost.toMap());
           Icon _icon = p.msgcode == 'MSG-0001' 
@@ -145,7 +186,7 @@ class _CampanhaCashbackResgatePixPageCRUDState extends State<CampanhaCashbackRes
 
     return new Scaffold(
       appBar: new AppBar(
-        title: Text("Adicionar"),
+        title: Text("Adicionar PIX"),
       ),
       body: _sceditview,
     );

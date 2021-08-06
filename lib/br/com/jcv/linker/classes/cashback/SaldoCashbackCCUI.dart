@@ -354,10 +354,15 @@ class _SaldoCashbackCCUIState extends State<SaldoCashbackCCUI> {
                   _ismembro = !_ismembro;
                 }); 
           }): Container(height: 0, width: 0,),
-          CommonFlatButtonPageRoute(Icon(Icons.money, color: Colors.white,)
-            , "Resgatar via PIX"
+          widget._saldoCashbackCCVO['usca']['permitirResgateViaPix'] == "S" && widget._saldoCashbackCCVO['vlsld'] > widget._saldoCashbackCCVO['usca']['vlMinimoResgate']
+          ? CommonFlatButtonPageRoute(Icon(Icons.money, color: Colors.white,)
+            , "Resgatar via PIX a partir " + widget._saldoCashbackCCVO['usca']['vlMinimoResgateMoeda']
             , new CampanhaCashbackResgatePixPage(widget._saldoCashbackCCVO)
-          ),
+          )
+          : CommonFlatButtonFunction(Icon(Icons.money, color: Colors.white)
+            , "Resgatar via PIX a partir " + widget._saldoCashbackCCVO['usca']['vlMinimoResgateMoeda']
+            , (){}
+            , color: Colors.grey ),
           _istransf ? widtransf : Container(height: 0, width: 0,),
           _isliquidar && !_isUsuarioComun ? widliquidar : Container(height: 0, width: 0,),
           _ismembro && _isUsuarioComun ? widtransMembro : Container(height: 0, width: 0,)
