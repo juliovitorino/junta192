@@ -33,7 +33,7 @@ dependencies:
   curved_navigation_bar: ^0.3.7
   qr_flutter: ^4.0.0
   barcode_scan: ^3.0.1
-  audioplayers: ^0.18.1
+  audioplayers: ^0.19.1
   image_picker: ^0.7.3
   timeline_list: ^0.0.5
   percent_indicator: ^3.0.1

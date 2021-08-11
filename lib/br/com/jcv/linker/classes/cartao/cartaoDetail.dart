@@ -4,8 +4,10 @@ import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoCarimbos15.dart'
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoCarimbos20.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoCarimbos5.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoTimeline.dart';
+import 'package:junta192/br/com/jcv/linker/classes/cartaomoverhistorico/CartaoMoverHistoricoPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-dataitem-title-text.dart';
 import 'package:junta192/br/com/jcv/linker/classes/cartao/cartaoCarimbos.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-flatbutton-pageroute.dart';
 
 class CartaoDetail extends StatelessWidget {
 
@@ -46,7 +48,13 @@ class CartaoDetail extends StatelessWidget {
         SizedBox(height: 20.0,),
         CommonDataItemTitleText("Descrição detalhada (Regras)", cartaofull['campanha']['textoExplicativo']),
         CommonDataItemTitleText("Última atualização do cartão",  cartaofull['cartao']['dataAtualizacao']),
-        CartaoTimeline(cartaofull)
+        CartaoTimeline(cartaofull),
+        CommonFlatButtonPageRoute(
+          Icon(Icons.access_alarm), 
+          "Histórico Cartão", 
+          CartaoMoverHistoricoPage(cartaofull)
+        )
+        
       ],
       
     );

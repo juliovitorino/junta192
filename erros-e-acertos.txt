@@ -24,3 +24,20 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-6.9-all.zip
 2) em build.gradle em nivel de projeto atualizei para versão pedida no binário => The binary version of its metadata is 1.5.1
 ext.kotlin_version = '1.5.10'
 ------------------
+
+ERRO> flutter build apk --split-per-abi --no-shrink --release --no-tree-shake-icons
+...
+Running Gradle task 'assembleRelease'...
+FAILURE: Build failed with an exception.
+* What went wrong:
+
+Execution failed for task ':app:processReleaseResources'.
+
+> A failure occurred while executing com.android.build.gradle.internal.tasks.Workers$ActionFacade
+   > Android resource linking failed
+     AAPT: error: failed writing to 'C:\Users\Julio\Documents\eclipse\workspaces\workspace-flutter\junta192\build\app\intermediates\runtime_symbol_list\release\R.txt': Os dados são inválidos. (13).
+
+===> SOLUÇÃO <=====
+deligar o antivirus, pois ele estava bloqueando o arquivo para criação.
+
+

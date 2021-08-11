@@ -45,7 +45,6 @@ class _SaldoCashbackCCPageState extends State<SaldoCashbackCCPage> {
           case ConnectionState.waiting:
             return new CommonLoading();
           case ConnectionState.done:
-            print("fiz");
             if(snapshot.hasError) {
             }
             if(snapshot.hasData){
