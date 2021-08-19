@@ -329,6 +329,7 @@ class _SaldoCashbackCCUIState extends State<SaldoCashbackCCUI> {
     Widget widActionBtn = Container(
       child: Column(
         children: <Widget>[
+          /* trecho perdeu função - remover no futuro apos testes
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -338,23 +339,26 @@ class _SaldoCashbackCCUIState extends State<SaldoCashbackCCUI> {
                   _istransf = !_istransf;
                 });
 
-              }),
+              }) ,
             ],
-          ),
+          ), */
+          CommonFlatButtonPageRoute(Icon(Icons.closed_caption, color: Colors.white,), "Ver meu Extrato", new CampanhaCashbackCCPage(int.parse(widget._saldoCashbackCCVO['id_dono']))),
+/*
           !_isUsuarioComun ?
           CommonFlatButtonFunction(Icon(Icons.file_download, color: Colors.white), "Liquidar Recebido", (){
                 setState(() {
                   _isliquidar = !_isliquidar;
                   tecTransf.text = widget._saldoCashbackCCVO['vlsld'].toString();
                 });
-          }) : Container(height: 0, width: 0,),
-          _isUsuarioComun ? 
+          }) : Container(height: 0, width: 0,), */
+         /* _isUsuarioComun ? */
           CommonFlatButtonFunction(Icon(Icons.group, color: Colors.white), "Transferência entre membros Junta10", () {
                 setState(() {
                   _ismembro = !_ismembro;
                 }); 
-          }): Container(height: 0, width: 0,),
-          widget._saldoCashbackCCVO['usca']['permitirResgateViaPix'] == "S" && widget._saldoCashbackCCVO['vlsld'] > widget._saldoCashbackCCVO['usca']['vlMinimoResgate']
+          })
+          /*: Container(height: 0, width: 0,)*/,
+          widget._saldoCashbackCCVO['usca']['permitirResgateViaPix'] == "S" /* && widget._saldoCashbackCCVO['vlsld'] > widget._saldoCashbackCCVO['usca']['vlMinimoResgate']*/
           ? CommonFlatButtonPageRoute(Icon(Icons.money, color: Colors.white,)
             , "Resgatar via PIX a partir " + widget._saldoCashbackCCVO['usca']['vlMinimoResgateMoeda']
             , new CampanhaCashbackResgatePixPage(widget._saldoCashbackCCVO)
