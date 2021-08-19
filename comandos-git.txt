@@ -20,7 +20,7 @@ git checkout <origin/[branch-remoto]> path/to/file
 git <seu-branch-local-receptor> 
 git merge <seu-branch-local-de-mudancas>
 
->>Tags Anotadas Criar uma tag anotada no Git é simples. A forma mais fácil é por especificar o parâmetro -a quando você executa o comando tag:
+>>Tags Anotadas Criar uma tag anotada no Git ï¿½ simples. A forma mais fï¿½cil ï¿½ por especificar o parï¿½metro -a quando vocï¿½ executa o comando tag:
 
 git checkout master
 $ git tag -a <nome-da-tag> -m "<mensagem-da-tag>"
@@ -29,3 +29,14 @@ $ git show <-nome-da-tag>
 >> Enviar tag para o github
 $ git tag
 $ git push origin <nome-da-tag>
+
+>> resolver os problemas de refs/remotes/origin/... stale
+refs/remotes/origin/bonificacao stale (use 'git remote prune' to remove)
+refs/remotes/origin/mover_selo  stale (use 'git remote prune' to remove)
+refs/remotes/origin/resgate-pix stale (use 'git remote prune' to remove)
+
+comando => # git fetch origin --prune
+From https://github.com/juliovitorino/cfdi
+ - [deleted]         (none)     -> origin/bonificacao
+ - [deleted]         (none)     -> origin/mover_selo
+ - [deleted]         (none)     -> origin/resgate-pix

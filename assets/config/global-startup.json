@@ -1,7 +1,7 @@
 {
     "whatsappSuporteNumero" : "+5524998340040",
     "whatsappSuporteMsg" : "Olá! Tenho dúvida a respeito deste aplicativo. Poderia me ajudar?",
-    "ambienteAtivo" : "PRD",
+    "ambienteAtivo" : "HMG",
     "ambientesDisponiveis" : [
       {
         "ambiente" : "PRD",
