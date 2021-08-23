@@ -108,8 +108,8 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                                   csd.showDialogYesNo().then( (value) async {
                                         if(csd.getChoice() == "Y") {
                                               final StringBuffer sb = new StringBuffer();
-                                              sb.writeln("Esta é sua chave de indicação do amigo $_nomeusuario para você capturar no Junta10");
-                                              sb.writeln(" ");
+                                              //sb.writeln("Esta é sua chave de indicação do amigo $_nomeusuario para você capturar no Junta10");
+                                              //sb.writeln(" ");
                                               sb.writeln(_token);
                                               await Share.share( sb.toString(),
                                                                 subject: "Premie seu amigo com o seu código de indicação"
