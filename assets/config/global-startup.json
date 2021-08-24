@@ -5,7 +5,7 @@
     "ambientesDisponiveis" : [
       {
         "ambiente" : "PRD",
-        "versao" : "1.4.3.5.20210807.1104",
+        "versao" : "1.4.7.5.20210824.0720",
         "gateway" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",
         "gatewayssl" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",
         "upload"  : "http://elitefinanceira.com/producao/cfdi/php/classes/upload",

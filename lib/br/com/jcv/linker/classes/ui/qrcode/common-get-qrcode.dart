@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:async';
@@ -104,7 +105,7 @@ class _CommonGetQRCodeState extends State<CommonGetQRCode> {
                           keyboardType: TextInputType.text,
                           controller: _hashController,
                           decoration: InputDecoration(
-                                labelText: "Digite o código se preferir",
+                                labelText: "Digite o código ou cole aqui se preferir",
                                 labelStyle: TextStyle(color: Colors.black),
                                 border: OutlineInputBorder()
                             ),
@@ -113,6 +114,33 @@ class _CommonGetQRCodeState extends State<CommonGetQRCode> {
                             fontSize: 15.0
                         ),
                       ),
+
+
+//------------------------------------------------------------------------------                  
+// Botão concluir para efetivar a captura do código e devolver ao invocador
+//-----------------------------------------------------------------------------                  
+
+                      Container(
+                        padding: EdgeInsets.only(top: 10.0),
+                        height: 50.0,
+                        child: RaisedButton(
+                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                onPressed: () {
+                                  setState(() {
+                                    _hash = _hashController.text; 
+                                  });
+                                  Navigator.pop(context, _hash);                                  
+                                } ,
+                                child: Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: AutoSizeText("Concluir", 
+                                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                                          maxLines: 1),
+                                ),
+                                color: Colors.green
+                              )
+                      ),
+                                      
 
                     ],
 
