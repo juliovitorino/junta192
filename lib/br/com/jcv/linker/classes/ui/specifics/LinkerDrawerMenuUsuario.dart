@@ -91,12 +91,36 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                           Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          QrImage(
-                            data: _token,
-                            size: 128,
-                            gapless: true,
-                            errorCorrectionLevel: QrErrorCorrectLevel.Q,
+                          GestureDetector(
+                            child:  QrImage(
+                              data: _token,
+                              size: 128,
+                              gapless: true,
+                              errorCorrectionLevel: QrErrorCorrectLevel.Q,
+                            ),
+                            onDoubleTap: () {
+                                  final String msg = 'Você deseja REALMENTE compartilhar seu código secreto? ';
+                                  CommonShowDialogYesNo csd = new CommonShowDialogYesNo(msg: msg
+                                    , icon: Icon(Icons.person, size: 128,)
+                                    , context: context
+                                    , textYes: "Sim"
+                                    , textNo: "Não");
+                                  csd.showDialogYesNo().then( (value) async {
+                                        if(csd.getChoice() == "Y") {
+                                              final StringBuffer sb = new StringBuffer();
+                                              //sb.writeln("Esta é sua chave de indicação do amigo $_nomeusuario para você capturar no Junta10");
+                                              //sb.writeln(" ");
+                                              sb.writeln(_token);
+                                              await Share.share( sb.toString(),
+                                                                subject: "Premie seu amigo com o seu código de indicação"
+                                                                );
+                                        }
+                                      }
+                                  );
+                                }
+                            
                           ),
+                         
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[

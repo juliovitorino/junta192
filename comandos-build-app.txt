@@ -14,8 +14,13 @@ flutter build apk --no-shrink
 #melhor para distribuição na playstore
 flutter build apk --split-per-abi --no-shrink --release --no-tree-shake-icons --verbose
 flutter build apk --split-per-abi --release
-flutter install -d 5200f2b8ecbeb423
 flutter run -d 5200f2b8ecbeb423
+
+#samsung dourado SM J710MN
+flutter install -d 5200f2b8ecbeb423
+
+#samsung J5
+flutter install -d 6eb003ac
 
 # construir release
 flutter build apk --release
@@ -32,6 +37,8 @@ https://flutter.dev/docs/deployment/ios
 #compilar a release para instalar no iphone para testar antes de enviar ao App Store Connect e evitar o erro codepoint XXXXX not found in font
 flutter run -d 00008020-001E2921340B002E
 flutter build ios --no-tree-shake-icons
+
+# atenção: Não faça este comando com a build gerada COM PROFILE DE PRODUÇÃO
 flutter install -d 00008020-001E2921340B002E
 
 flutter build ios --release --no-tree-shake-icons --verbose

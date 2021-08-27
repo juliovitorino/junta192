@@ -370,6 +370,8 @@ print("*** versao ==> $versao ****");
 print("*** Dados do post ****");
 
 print("Post para ==>" + GlobalStartup().getGatewaySsl() + '/appFacebookAutenticacao.php');
+print(json.encode(newPost.toMap()));
+
     LoginFacebookPost p = await createPost(GlobalStartup().getGatewaySsl() + '/appFacebookAutenticacao.php', body: newPost.toMap());
     return p;
   }
