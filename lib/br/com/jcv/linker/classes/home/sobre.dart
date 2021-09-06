@@ -11,7 +11,7 @@ class Sobre extends StatelessWidget {
     String _token = CacheSession().getSession()['tokenid'];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sobre"),
+        title: Text("Sobre o Aplicativo"),
       ),
       body: SingleChildScrollView(
               padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
