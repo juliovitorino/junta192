@@ -76,7 +76,7 @@ class _PerfilPageState extends State<PerfilPage> {
                       return Container(
                         child: ListView(
                           children: <Widget>[
-                              new CommonListTile(Icons.account_box, 'Meus Dados', ()=>{}, new UsuarioPage(_perfil['usuario'])),
+                              new CommonListTile(Icons.account_box, 'Meus Dados', ()=>{}, new UsuarioPage(_perfil['usuario'],_perfil['usuarioComplemento'])),
                               new CommonListTile(Icons.apps, 'Aplicativo', ()=>{}, new Sobre()),
                               new CommonListTile(Icons.account_balance_wallet, 'Meu Plano', ()=>{}, new PlanoUsuarioPage(_perfil['usuarioPlanoAtivo'])),
                               //new CommonListTile(Icons.attach_money, 'Configuração de Cashback', ()=>{}, null),

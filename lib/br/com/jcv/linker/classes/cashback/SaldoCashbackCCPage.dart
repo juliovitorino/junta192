@@ -37,6 +37,7 @@ class _SaldoCashbackCCPageState extends State<SaldoCashbackCCPage> {
   Widget build(BuildContext context) {
     return new FutureBuilder(
       future: _getSaldoCashbackCC(),
+      // ignore: missing_return
       builder: (BuildContext context, AsyncSnapshot<Map> snapshot){
         switch (snapshot.connectionState) {
           case ConnectionState.none:
