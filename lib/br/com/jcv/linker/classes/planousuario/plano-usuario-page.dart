@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:junta192/br/com/jcv/linker/classes/plano/PlanoPageLV.dart';
 import 'package:junta192/br/com/jcv/linker/classes/planousuario/plano-usuario-detail.dart';
-import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-flatbutton-function.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-flatbutton-pageroute.dart';
 
 class PlanoUsuarioPage extends StatelessWidget {
 
@@ -28,7 +29,7 @@ class PlanoUsuarioPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Migrar Plano", ()=>{},),
+                        CommonFlatButtonPageRoute(Icon(Icons.edit, color: Colors.white), "Migrar Plano", new PlanoPageLV(),),
                         //CommonFlatButtonFunction(Icon(Icons.delete, color: Colors.white), "Apagar", ()=>{}, color: Colors.red[600],),
                       ],
                     ),
