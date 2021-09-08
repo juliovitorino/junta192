@@ -14,9 +14,9 @@ class PlanoUsuarioDetail extends StatelessWidget {
       children: <Widget>[
         SizedBox(height: 10,),
         CommonDataItemTitleText("Nome do Plano", planousuarioPerfil['nome']),
-        CommonDataItemTitleText("Valor", planousuarioPerfil['valor']),
+        CommonDataItemTitleText("Valor", planousuarioPerfil['valorMoeda']),
         CommonDataItemTitleText("Data de Aceite", planousuarioPerfil['dataCadastro']),
-        CommonDataItemTitleText("Status da conta", planousuarioPerfil['status'].toUpperCase(), color: Colors.blueAccent,),
+        CommonDataItemTitleText("Status da conta", planousuarioPerfil['statusdesc'].toUpperCase(), color: Colors.blueAccent,),
       ],
       
     );
