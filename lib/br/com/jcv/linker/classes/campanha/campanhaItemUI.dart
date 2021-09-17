@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:ffi';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:junta192/br/com/jcv/linker/classes/campanhasorteio/CampanhaSorteioPage.dart';
 import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 
@@ -53,7 +55,16 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
     http.Response response = await http.get(Uri.parse(url));
     return json.decode(response.body);
   }
-
+  
+  _imprimirCarimbosCampanha(String id) async {
+    String url='${_urlControlador}imprimir-qrcodes.php?tokenid=$_token&cmpid=$id';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Não foi possível abrir o browser em $url';
+    }
+  }
+  
   void _criarCarimbosCampanhaClick(BuildContext context){
 
     CommonShowDialogYesNo retorno = new CommonShowDialogYesNo(
@@ -103,12 +114,13 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
     if(widget._campanhafull['status'] == 'A' ){
       _lstToolbar.add(new LinkerDataItemBottom(Icons.edit, "Editar", pageAction: new CampanhaPageEdit(widget._campanhafull)));
       _lstToolbar.add(new LinkerDataItemBottom(Icons.casino, "Sorteios", pageAction: new CampanhaSorteioPage(widget._campanhafull)));
+      _lstToolbar.add(new LinkerDataItemBottom(Icons.lock_open, "Autorizadores", pageAction: new UsuarioAutorizadorPage(widget._campanhafull['id'])));
 
+/* candidato a sumir - perdeu a função após depois das mudanças de processo de cashback
       if(CacheSession().getSession()['tipousuario'] == "P"){
-        _lstToolbar.add(new LinkerDataItemBottom(Icons.lock_open, "Autorizadores", pageAction: new UsuarioAutorizadorPage(widget._campanhafull['id'])));
         _lstToolbar.add(new LinkerDataItemBottom(Icons.monetization_on, "Cashback", pageAction: new CampanhaDetailPage(widget._campanhafull, acao: "S")));
       }
-      
+*/      
       if(int.parse(widget._campanhafull['totalCarimbados']) == 0 && int.parse(widget._campanhafull['totalCarimbos']) > 0){
         _lstToolbar.add(new LinkerDataItemBottom(Icons.cancel , "Cancelar",pageAction: new CampanhaDetailPage(widget._campanhafull, acao: "C",)));
 
@@ -136,17 +148,13 @@ class _CampanhaItemUIState extends State<CampanhaItemUI> {
       _btnAction = new Container(width: 0, height: 0,);
     }
 
-    // Opções disponiveis somente para usuário membros e premium
-    //if(    ( CacheSession().getSession()['tipousuario'] == "C" )
-    //    && ( CacheSession().getSession()['isGratuito'] == '0' )
-    //    || ( CacheSession().getSession()['tipousuario'] == "P" )
-    //){
-      _lstToolbar.add(new LinkerDataItemBottom(Icons.offline_bolt, "Performance", pageAction: new CampanhaPerformancePage(widget._campanhafull)));
-    //}
-    
+    _lstToolbar.add(new LinkerDataItemBottom(Icons.offline_bolt, "Performance", pageAction: new CampanhaPerformancePage(widget._campanhafull)));
     _lstToolbar.add(new LinkerDataItemBottom(Icons.info, "Detalhes", pageAction: new CampanhaDetailPage(widget._campanhafull)));
     _lstToolbar.add(new LinkerDataItemBottom(Icons.record_voice_over, "Comentários", pageAction: new CampanhaComentariosPage(widget._campanhafull, isShowImage: true)));
     _lstToolbar.add(new LinkerDataItemBottom(Icons.people, "Participantes", pageAction: new CampanhaParticipantesPage(widget._campanhafull)));
+    _lstToolbar.add(new LinkerDataItemBottom(Icons.print, "QR Code", funcaoAction: () async {
+      await _imprimirCarimbosCampanha(widget._campanhafull['id']);
+    } ));
     double _percmetacarimbos = int.parse(widget._campanhafull['totalCarimbos']) == 0
           ? 0
           : int.parse(widget._campanhafull['totalCarimbados']) / int.parse(widget._campanhafull['totalCarimbos']) * 100;
