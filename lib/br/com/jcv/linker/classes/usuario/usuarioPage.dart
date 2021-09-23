@@ -29,7 +29,7 @@ class UsuarioPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", ()=>{},),
+                        //CommonFlatButtonFunction(Icon(Icons.edit, color: Colors.white), "Editar", ()=>{},),
                         //CommonFlatButtonFunction(Icon(Icons.delete, color: Colors.white), "Apagar", ()=>{}, color: Colors.red[600],),
                       ],
                     ),

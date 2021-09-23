@@ -29,7 +29,7 @@ class PlanoUsuarioPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        CommonFlatButtonPageRoute(Icon(Icons.edit, color: Colors.white), "Migrar Plano", new PlanoPageLV(),),
+                        //CommonFlatButtonPageRoute(Icon(Icons.edit, color: Colors.white), "Migrar Plano", new PlanoPageLV(),),
                         //CommonFlatButtonFunction(Icon(Icons.delete, color: Colors.white), "Apagar", ()=>{}, color: Colors.red[600],),
                       ],
                     ),
