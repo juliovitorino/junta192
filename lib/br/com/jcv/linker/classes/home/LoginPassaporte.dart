@@ -527,7 +527,7 @@ print("*** Dados do post ****");
                               new Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: AutoSizeText(
-                                  "Continuar com Facebook",
+                                  "Continuar com o Facebook",
                                   style: TextStyle(color: Colors.white),
                                   maxLines: 1,
                                 ),
@@ -581,7 +581,7 @@ print("*** Dados do post ****");
                               new Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: AutoSizeText(
-                                  "Continuar com Google",
+                                  "Continuar com o Google",
                                   style: TextStyle(color: Colors.white),
                                   maxLines: 1,
                                 ),
@@ -633,7 +633,7 @@ print("*** Dados do post ****");
                               new Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: AutoSizeText(
-                                  "Continuar com Apple",
+                                  "Continuar com a Apple",
                                   style: TextStyle(color: Colors.white),
                                   maxLines: 1,
                                 ),
