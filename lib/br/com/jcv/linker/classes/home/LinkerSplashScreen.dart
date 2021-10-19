@@ -65,13 +65,16 @@ quebra galho pra recriar a sessão interna no dispositivo
         // Decide o Drawer de acordo com o tipo do usuário
         final Map sessao = CacheSession().getSession();
         print(sessao['tipousuario']);
+        final Widget drawer = LinkerDrawerMenuUsuario(session: new SessionStorage()) ;
+/*
+não existe mais a decisão de tipo de menu em função do tipo do usuário
         final Widget drawer = sessao['tipousuario'] == 'P' 
                               ? LinkerDrawerMenuParceiro(session: new SessionStorage()) 
                               : sessao['tipousuario'] == 'A'  
                               ? LinkerDrawerMenuAdmin()
                               : LinkerDrawerMenuUsuario(session: new SessionStorage()) ;
 
-
+*/
         Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => new HomePage(drawerMenu: drawer) ),

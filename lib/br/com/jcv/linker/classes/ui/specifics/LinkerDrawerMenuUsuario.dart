@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/qrcode/common-get-qrcode.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-list-tile.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share/share.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,7 @@ import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-image-circle
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-showdialog.dart';
 import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesAjuda.dart';
 import 'package:junta192/br/com/jcv/linker/classes/functions/funcoesLauncher.dart';
+import 'package:junta192/br/com/jcv/linker/classes/home/PerfilPage.dart';
 
 //import 'package:junta10/br/com/jcv/linker/classes/cartao/cartaoPageEntregaResgate.dart';
 //import 'package:junta10/br/com/jcv/linker/classes/usuariocashback/UsuarioCashbackPage.dart';
@@ -140,17 +142,17 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                   )
                 )
               ),
-              new LinkerListTile(Icons.settings, 'Minhas Campanhas', ()=>{}, new CampanhaPage(session: new SessionStorage())),
-              ////new LinkerListTile(Icons.watch_later, '24H de Promoções', ()=>{},new UsuarioFinalPublicidadePage()),
-              new LinkerListTile(Icons.help, 'Como funciona?', ()=>fcnAcionarAjudaComoFunciona(context),null),
-              new LinkerListTile(Icons.support_agent_outlined, 
+              new CommonListTile(Icons.settings, 'Minhas Campanhas', ()=>{}, new CampanhaPage(session: new SessionStorage())),
+              ////new CommonListTile(Icons.watch_later, '24H de Promoções', ()=>{},new UsuarioFinalPublicidadePage()),
+              new CommonListTile(Icons.help, 'Como funciona?', ()=>fcnAcionarAjudaComoFunciona(context),null),
+              new CommonListTile(Icons.support_agent_outlined, 
                                 'Suporte via WhatsApp', 
                                 () async => fcnWhatsApp(
                                         GlobalStartup().getWhatsappSuporteNumero(),
                                         GlobalStartup().getwhatsappSuporteMsg()
                                 ),
                                 null),
-              new LinkerListTile(Icons.share_outlined, 
+              new CommonListTile(Icons.share_outlined, 
                                 "Compartilhe com Amigos", 
                                 () async {
                                     final StringBuffer sb = new StringBuffer();
@@ -167,7 +169,7 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                                                      );
                                 }, 
                                 null),
-              new LinkerListTile(const IconData(0xee49, fontFamily: 'MaterialIcons'), "Campanha de Indicação", () async {
+              new CommonListTile(const IconData(0xee49, fontFamily: 'MaterialIcons'), "Campanha de Indicação", () async {
                   qrcode =  await abrirPaginaCapturarQrCode(context);
                   print("*****************************");              
                   print("Qrcode capturado = $qrcode");              
@@ -185,15 +187,16 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
                   }); 
 
               }, null), 
-              new LinkerListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
-              //new LinkerListTile(Icons.group, 'Indique um amigo', ()=>{},null),
-              //new LinkerListTile(Icons.person, 'Meu Perfil', ()=>{},null),
-              //new LinkerListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{},null),
-              //new LinkerListTile(Icons.monetization_on, 'Gerenciar Cashback', ()=>{}, new UsuarioCashbackPage()),
-              //new LinkerListTile(Icons.record_voice_over, 'Anunciar Promoções', ()=>{}, new UsuarioPublicidadePage()),
-              //new LinkerListTile(Icons.casino, 'Sorteios', ()=>{}, new UsuarioPublicidadePage()),
-              //new LinkerListTile(Icons.notifications, 'Notificações', ()=>{},null),
-              //new LinkerListTile(Icons.settings, 'Preferências', ()=>{},null),
+              //new CommonListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
+              new CommonListTile(Icons.info_outline, "Sobre", ()=>{}, new PerfilPage()),
+              //new CommonListTile(Icons.group, 'Indique um amigo', ()=>{},null),
+              //new CommonListTile(Icons.person, 'Meu Perfil', ()=>{},null),
+              //new CommonListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{},null),
+              //new CommonListTile(Icons.monetization_on, 'Gerenciar Cashback', ()=>{}, new UsuarioCashbackPage()),
+              //new CommonListTile(Icons.record_voice_over, 'Anunciar Promoções', ()=>{}, new UsuarioPublicidadePage()),
+              //new CommonListTile(Icons.casino, 'Sorteios', ()=>{}, new UsuarioPublicidadePage()),
+              //new CommonListTile(Icons.notifications, 'Notificações', ()=>{},null),
+              //new CommonListTile(Icons.settings, 'Preferências', ()=>{},null),
               new Padding(
               padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
               child: new Container(
@@ -239,64 +242,4 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
     );
   }
 
-}
-
-class LinkerListTile extends StatelessWidget{
-
-  // atributos que serão utilizados nos itens e serão fornecidos
-  // no construtor
-  IconData icon;
-  String texto;
-  Function onTap;
-  Widget rota;
-
-  // Construtor para inicializar os atributos da classe
-  LinkerListTile(this.icon, this.texto, this.onTap, this.rota);
-  
-
-  @override
-  Widget build(BuildContext context){
-    return Padding(
-      padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-      child: new Container(
-        decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey.shade400))
-        ),
-        child: InkWell(
-          splashColor: Colors.orangeAccent,
-          onTap: (){
-            onTap();
-            if(rota != null){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => rota),
-              );
-            }
-          },
-          child: Container(
-            height: 50.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Icon(icon),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(texto, style: TextStyle(
-                            fontSize: 16.0
-                        ),),
-                    )
-
-                  ],
-                ),
-                Icon(Icons.arrow_right)
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-
-  }
 }
