@@ -9,6 +9,10 @@
         android:label="Junta10"
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+          android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyBXms0acSJK4gezNLWIDNoz4Qwwve738T8" />
         
         <activity
             android:name=".MainActivity"
