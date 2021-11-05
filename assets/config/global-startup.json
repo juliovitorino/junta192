@@ -1,7 +1,7 @@
 {
     "whatsappSuporteNumero" : "+5524998340040",
     "whatsappSuporteMsg" : "Olá! Tenho dúvida a respeito deste aplicativo. Poderia me ajudar?",
-    "ambienteAtivo" : "PRD",
+    "ambienteAtivo" : "HMG",
     "ambientesDisponiveis" : [
       {
         "ambiente" : "PRD",
@@ -14,7 +14,7 @@
       },
       {
         "ambiente" : "HMG",
-        "versao" : "1.4.8.5.20210906.1129",
+        "versao" : "1.4.9.5.20211105.1500",
         "gateway" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
         "gatewayssl" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
         "upload"  : "http://www.elitefinanceira.com/cfdi/php/classes/upload",
