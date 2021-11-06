@@ -56,6 +56,7 @@ final String imgAjudaEntregarRecompensa = "$pathHome/ajuda/ajuda-entregar-recomp
 final String imgAjudaValidarCartao = "$pathHome/ajuda/ajuda-validar-cartao.png";
 final String imgAjudaCodigoValidadoSucesso = "$pathHome/ajuda/ajuda-codigo-validado-sucesso.png";
 final String imgAjudaEntregarRecompesa = "$pathHome/ajuda/ajuda-entregar-recompesa.png";
+final String imgMapJunta10Bmp = "$pathHome/junta10-60x60.bmp";
 
 
 //path para ajuda Como criar campanhas

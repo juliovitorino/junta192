@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-loading.dart';
+
+//import 'package:junta192/br/com/jcv/linker/classes/style/asset.dart';
 
 class GeoLocalizacaoPage extends StatefulWidget {
   
@@ -14,54 +18,89 @@ class GeoLocalizacaoPage extends StatefulWidget {
 
 class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
   
-
+  FutureBuilder<Set<Marker>> _gmaps;
   Set<Marker> markers = Set<Marker>();
+  Position _poscorrente;
 
-  @override
-  Widget build(BuildContext context) {
+  Future<Position> _getCurrentLocation() async {
+    return await Geolocator().getCurrentPosition();
+  }
+
+  Future<Set<Marker>> _loadCampanhas() async {
+    _poscorrente = await _getCurrentLocation();
+    
+    markers.add(
+      Marker(
+        markerId: MarkerId("EU"),
+        position: LatLng(_poscorrente.latitude, _poscorrente.longitude),
+        //icon:  bmpA,
+        infoWindow: InfoWindow(
+          title: "Você está Aqui!",
+          snippet: "Veja os Locais em Pins Vermelhos"
+        ),
+
+      )
+    );
+
+    
     markers.add(
       Marker(
         markerId: MarkerId("FAB J10-1"),
         position: LatLng(-22.53446525795224, -44.06438902006575),
+        //icon:  bmpA,
+        infoWindow: InfoWindow(
+          title: "Kiriatti Empório Gourmet",
+          snippet: "Ganha um Combo II com hotfiladelfia"
+        ),
+
       )
     );
 
-    markers.add(
-      Marker(
-        markerId: MarkerId("FAB J10-2"),
-        position: LatLng(-22.53358329358749, -44.063530713206966),
-      )
-    );
-
-    markers.add(
-      Marker(
-        markerId: MarkerId("FAB J10-3"),
-        position: LatLng(-22.532228129499877, -44.063401967178145),
-      )
-    );
+    return markers;
 
 
-    markers.add(
-      Marker(
-        markerId: MarkerId("FAB J10-4"),
-        position: LatLng(-22.53517627570643, -44.06424954521665),
-      )
-    );
+  }
 
+  @override
+  Widget build(BuildContext context) {
+
+    _gmaps = FutureBuilder(
+      future: _loadCampanhas(),
+      // ignore: missing_return
+      builder: (BuildContext context, AsyncSnapshot<Set<Marker>> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              break;
+            case ConnectionState.active:
+            case ConnectionState.waiting:
+              return new CommonLoading();
+            case ConnectionState.done:
+              if(snapshot.hasError) {
+              }
+              if(snapshot.hasData){
+                return GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(_poscorrente.latitude, _poscorrente.longitude),
+                    zoom: 18.1521,
+                  ),
+                  mapType: MapType.normal,
+                  myLocationEnabled: true,
+                  markers: markers,
+                );
+              }
+              break;
+            default:
+              return new Container(height: 0.0,width: 0.0,);
+          }
+      });
+
+    //_loadCampanhas();
 
     return Scaffold(
       appBar: AppBar(
         title: Text("Onde tem Junta10"),
       ),
-      body: GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(-22.5323031,-44.0635294),
-          zoom: 18.1521,
-        ),
-        mapType: MapType.normal,
-        myLocationEnabled: true,
-        markers: markers,
-      ),
+      body: _gmaps,
     );
   }
 }

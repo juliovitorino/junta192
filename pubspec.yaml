@@ -119,6 +119,11 @@ flutter:
     - assets/images/youtube-01.png
     - assets/images/money.png
     - assets/images/junta10-1000x1000.png
+    - assets/images/junta10-29x29.png
+    - assets/images/junta10-40x40.png
+    - assets/images/junta10-80x80.png
+    - assets/images/junta10-60x60.png
+    - assets/images/junta10-60x60.bmp
     - assets/images/logo-1024x1024.png
     - assets/images/sem-imagem.jpeg
     - assets/images/ajuda/presente.png

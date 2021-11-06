@@ -189,7 +189,7 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
               }, null), 
               //new CommonListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
               new CommonListTile(Icons.info_outline, "Sobre", ()=>{}, new PerfilPage()),
-              new CommonListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{}, new GeoLocalizacaoPage()),
+              new CommonListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{}, new GeoLocalizacaoPage(key: GlobalKey())),
               //new CommonListTile(Icons.monetization_on, 'Gerenciar Cashback', ()=>{}, new UsuarioCashbackPage()),
               //new CommonListTile(Icons.record_voice_over, 'Anunciar Promoções', ()=>{}, new UsuarioPublicidadePage()),
               //new CommonListTile(Icons.casino, 'Sorteios', ()=>{}, new UsuarioPublicidadePage()),
