@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
+
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-loading.dart';
 
 //import 'package:junta192/br/com/jcv/linker/classes/style/asset.dart';
@@ -21,6 +25,26 @@ class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
   FutureBuilder<Set<Marker>> _gmaps;
   Set<Marker> markers = Set<Marker>();
   Position _poscorrente;
+  String _token;
+  String _urlControlador;
+
+
+  @override
+  _GeoLocalizacaoPageState initState(){
+    _token = CacheSession().getSession()['tokenid'];
+    _urlControlador = CacheSession().getSession()['urlControlador'];
+
+  }
+
+
+  Future<List> _listCampanhaSorteio() async {
+    http.Response response;
+    String _url = '${_urlControlador}appListarCampanhasGMaps.php?tokenid=$_token';
+
+    debugPrint(_url);
+    response = await http.get(Uri.parse(_url));
+    return (json.decode(response.body));
+  }
 
   Future<Position> _getCurrentLocation() async {
     return await Geolocator().getCurrentPosition();
@@ -28,21 +52,24 @@ class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
 
   Future<Set<Marker>> _loadCampanhas() async {
     _poscorrente = await _getCurrentLocation();
-    
-    markers.add(
-      Marker(
-        markerId: MarkerId("EU"),
-        position: LatLng(_poscorrente.latitude, _poscorrente.longitude),
-        //icon:  bmpA,
-        infoWindow: InfoWindow(
-          title: "Você está Aqui!",
-          snippet: "Veja os Locais em Pins Vermelhos"
-        ),
+    List lstCampanhas = await _listCampanhaSorteio();
 
-      )
-    );
+    lstCampanhas.forEach((campanhaItem) { 
+      markers.add(
+        Marker(
+          markerId: MarkerId(campanhaItem['id']),
+          position: LatLng(campanhaItem['latitude'], campanhaItem['longitude']),
+          //icon:  bmpA,
+          infoWindow: InfoWindow(
+            title: campanhaItem['usuario']['apelido'],
+            snippet: campanhaItem['nome']
+          ),
 
-    
+        )
+      );
+
+    });
+/*    
     markers.add(
       Marker(
         markerId: MarkerId("FAB J10-1"),
@@ -55,7 +82,7 @@ class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
 
       )
     );
-
+*/
     return markers;
 
 
