@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
+import 'package:junta192/br/com/jcv/linker/classes/ui/ads/ads-royal-typeOne.dart';
 
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-loading.dart';
 
@@ -50,7 +51,7 @@ class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
     return await Geolocator().getCurrentPosition();
   }
 
-  Future<Set<Marker>> _loadCampanhas() async {
+  Future<Set<Marker>> _loadCampanhas(BuildContext context) async {
     _poscorrente = await _getCurrentLocation();
     List lstCampanhas = await _listCampanhaSorteio();
 
@@ -64,27 +65,39 @@ class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
             title: campanhaItem['usuario']['apelido'],
             snippet: campanhaItem['nome']
           ),
+          onTap: () {
+            showModalBottomSheet(
+              context: context, 
+              builder: (context) =>  Container(
+                            padding: new EdgeInsets.all(16.0),
+                            child: new Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(top: 5.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(Icons.thumb_up, color: Colors.blue),
+                                        SizedBox(width: 5.0,),
+                                        Text("5 pessoas curtiram a campanha" ),
+                                      ],
+                                    ),
+                                  ),
+                                  new AdsRoyalTypeOne(campanhaItem['id'],campanhaItem['img'],campanhaItem['usuario']['apelido'],  Text(campanhaItem['nome']), isGetImagem: true ),
+
+                              ],
+                            ),
+                          ),
+            );
+
+          }
 
         )
       );
 
     });
-/*    
-    markers.add(
-      Marker(
-        markerId: MarkerId("FAB J10-1"),
-        position: LatLng(-22.53446525795224, -44.06438902006575),
-        //icon:  bmpA,
-        infoWindow: InfoWindow(
-          title: "Kiriatti Empório Gourmet",
-          snippet: "Ganha um Combo II com hotfiladelfia"
-        ),
 
-      )
-    );
-*/
     return markers;
-
 
   }
 
@@ -92,7 +105,7 @@ class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
   Widget build(BuildContext context) {
 
     _gmaps = FutureBuilder(
-      future: _loadCampanhas(),
+      future: _loadCampanhas(context),
       // ignore: missing_return
       builder: (BuildContext context, AsyncSnapshot<Set<Marker>> snapshot) {
           switch (snapshot.connectionState) {
