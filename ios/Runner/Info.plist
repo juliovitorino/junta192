@@ -57,6 +57,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Precisamos da sua localização para apresentar os clientes com campanhas de fidelidade</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Aponte sua camera para o QRcode pra capturar seu ticket e registrar seu cartão digital</string>
 	<key>NSMicrophoneUsageDescription</key>

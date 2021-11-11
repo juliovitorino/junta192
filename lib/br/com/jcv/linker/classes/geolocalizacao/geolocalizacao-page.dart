@@ -110,21 +110,29 @@ class _GeoLocalizacaoPageState extends State<GeoLocalizacaoPage> {
       builder: (BuildContext context, AsyncSnapshot<Set<Marker>> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
-              break;
+            return Container(
+                  child: Text("entramos ConnectionState.none"),
+                );
             case ConnectionState.active:
             case ConnectionState.waiting:
               return new CommonLoading();
             case ConnectionState.done:
               if(snapshot.hasError) {
+                return Container(
+                  child: Text("Algum erro aconteceu ${snapshot.error}"),
+                );
               }
               if(snapshot.hasData){
                 return GoogleMap(
                   initialCameraPosition: CameraPosition(
                     target: LatLng(_poscorrente.latitude, _poscorrente.longitude),
-                    zoom: 18.1521,
+                    zoom: 4,
                   ),
                   mapType: MapType.normal,
                   myLocationEnabled: true,
+                  myLocationButtonEnabled: true,
+                  zoomControlsEnabled: true,
+                  zoomGesturesEnabled: true,
                   markers: markers,
                 );
               }
