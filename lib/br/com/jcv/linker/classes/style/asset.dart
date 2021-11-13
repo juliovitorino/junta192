@@ -75,3 +75,6 @@ final List<String> imgAjudaCCCPasso = [
 // paths para sons
 final String sndCashRegister = "sounds/cash-register.mp3";
 
+// path para privacy policy
+final String pathPrivacyPolicy = "assets/privacy/privacy-policy.txt";
+

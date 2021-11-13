@@ -161,6 +161,7 @@ flutter:
     - assets/images/ajuda/ajuda-entregar-recompesa.png
     - assets/sounds/cash-register.mp3
     - assets/config/global-startup.json
+    - assets/privacy/privacy-policy.txt
 
   fonts:
     - family: icomoon

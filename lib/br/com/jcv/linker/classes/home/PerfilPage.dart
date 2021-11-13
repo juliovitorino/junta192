@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:junta192/br/com/jcv/linker/classes/home/privacy-policy-page.dart';
 import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
 import 'package:junta192/br/com/jcv/linker/classes/planousuario/plano-usuario-page.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/cacheSession.dart';
@@ -79,6 +80,7 @@ class _PerfilPageState extends State<PerfilPage> {
                               new CommonListTile(Icons.account_box, 'Meus Dados', ()=>{}, new UsuarioPage(_perfil['usuario'],_perfil['usuarioComplemento'])),
                               new CommonListTile(Icons.apps, 'Aplicativo', ()=>{}, new Sobre()),
                               new CommonListTile(Icons.account_balance_wallet, 'Meu Plano', ()=>{}, new PlanoUsuarioPage(_perfil['usuarioPlanoAtivo'])),
+                              new CommonListTile(Icons.privacy_tip, 'Política de Privacidade', ()=>{}, new PrivacyPolycePage()),
                               //new CommonListTile(Icons.attach_money, 'Configuração de Cashback', ()=>{}, null),
 
                           ],
