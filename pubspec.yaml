@@ -48,6 +48,9 @@ dependencies:
   auto_size_text: ^2.1.0
   share: ^2.0.1
   sign_in_with_apple: ^3.0.0
+  location: ^4.3.0
+  geolocator: ^5.1.5
+  google_maps_flutter: ^2.0.6
   
 dev_dependencies:
   flutter_test:
@@ -116,6 +119,11 @@ flutter:
     - assets/images/youtube-01.png
     - assets/images/money.png
     - assets/images/junta10-1000x1000.png
+    - assets/images/junta10-29x29.png
+    - assets/images/junta10-40x40.png
+    - assets/images/junta10-80x80.png
+    - assets/images/junta10-60x60.png
+    - assets/images/junta10-60x60.bmp
     - assets/images/logo-1024x1024.png
     - assets/images/sem-imagem.jpeg
     - assets/images/ajuda/presente.png
@@ -153,6 +161,7 @@ flutter:
     - assets/images/ajuda/ajuda-entregar-recompesa.png
     - assets/sounds/cash-register.mp3
     - assets/config/global-startup.json
+    - assets/privacy/privacy-policy.txt
 
   fonts:
     - family: icomoon

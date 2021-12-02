@@ -36,7 +36,9 @@ https://flutter.dev/docs/deployment/ios
 
 #compilar a release para instalar no iphone para testar antes de enviar ao App Store Connect e evitar o erro codepoint XXXXX not found in font
 flutter run -d 00008020-001E2921340B002E
+
 flutter build ios --no-tree-shake-icons
+flutter install -d 00008020-001E2921340B002E
 
 # atenção: Não faça este comando com a build gerada COM PROFILE DE PRODUÇÃO
 flutter install -d 00008020-001E2921340B002E

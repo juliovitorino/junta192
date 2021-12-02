@@ -25,7 +25,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-6.9-all.zip
 ext.kotlin_version = '1.5.10'
 ------------------
 
-ERRO> flutter build apk --split-per-abi --no-shrink --release --no-tree-shake-icons
+ERRO ANDROID> flutter build apk --split-per-abi --no-shrink --release --no-tree-shake-icons
 ...
 Running Gradle task 'assembleRelease'...
 FAILURE: Build failed with an exception.
@@ -40,4 +40,17 @@ Execution failed for task ':app:processReleaseResources'.
 ===> SOLUÇÃO <=====
 deligar o antivirus, pois ele estava bloqueando o arquivo para criação.
 
+==============ERRO Xcode 11.11.2021 ====
+
+[!] Xcode - develop for iOS and macOS
+    ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.
+      Download at: https://developer.apple.com/xcode/download/
+      Or install Xcode via the App Store.
+      Once installed, run:
+        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        sudo xcodebuild -runFirstLaunch
+    • CocoaPods version 1.10.1
+
+=======> SOLUÇÃO 11.11.2021 <=======
+https://stackoverflow.com/questions/64944483/flutter-doctor-xcode-installation-is-incomplete/64944574
 

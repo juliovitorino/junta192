@@ -5,7 +5,7 @@
     "ambientesDisponiveis" : [
       {
         "ambiente" : "PRD",
-        "versao" : "1.4.8.5.20210906.1129",
+        "versao" : "1.4.9.5.20211105.1500",
         "gateway" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",
         "gatewayssl" : "http://elitefinanceira.com/producao/cfdi/php/classes/gateway",
         "upload"  : "http://elitefinanceira.com/producao/cfdi/php/classes/upload",
@@ -14,7 +14,7 @@
       },
       {
         "ambiente" : "HMG",
-        "versao" : "1.4.8.5.20210906.1129",
+        "versao" : "1.4.9.5.20211105.1500",
         "gateway" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
         "gatewayssl" : "http://www.elitefinanceira.com/cfdi/php/classes/gateway",
         "upload"  : "http://www.elitefinanceira.com/cfdi/php/classes/upload",

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:junta192/br/com/jcv/linker/classes/home/sobre.dart';
+import 'package:junta192/br/com/jcv/linker/classes/geolocalizacao/geolocalizacao-page.dart';
 import 'package:junta192/br/com/jcv/linker/classes/storages/global_startup.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/qrcode/common-get-qrcode.dart';
 import 'package:junta192/br/com/jcv/linker/classes/ui/common/common-list-tile.dart';
@@ -145,6 +145,7 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
               new CommonListTile(Icons.settings, 'Minhas Campanhas', ()=>{}, new CampanhaPage(session: new SessionStorage())),
               ////new CommonListTile(Icons.watch_later, '24H de Promoções', ()=>{},new UsuarioFinalPublicidadePage()),
               new CommonListTile(Icons.help, 'Como funciona?', ()=>fcnAcionarAjudaComoFunciona(context),null),
+              new CommonListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{}, new GeoLocalizacaoPage(key: GlobalKey())),
               new CommonListTile(Icons.support_agent_outlined, 
                                 'Suporte via WhatsApp', 
                                 () async => fcnWhatsApp(
@@ -189,9 +190,6 @@ class _LinkerDrawerMenuUsuarioState extends State<LinkerDrawerMenuUsuario> {
               }, null), 
               //new CommonListTile(Icons.info_outline, "Sobre", ()=>{}, new Sobre()),
               new CommonListTile(Icons.info_outline, "Sobre", ()=>{}, new PerfilPage()),
-              //new CommonListTile(Icons.group, 'Indique um amigo', ()=>{},null),
-              //new CommonListTile(Icons.person, 'Meu Perfil', ()=>{},null),
-              //new CommonListTile(Icons.pin_drop, 'Onde tem Junta10?', ()=>{},null),
               //new CommonListTile(Icons.monetization_on, 'Gerenciar Cashback', ()=>{}, new UsuarioCashbackPage()),
               //new CommonListTile(Icons.record_voice_over, 'Anunciar Promoções', ()=>{}, new UsuarioPublicidadePage()),
               //new CommonListTile(Icons.casino, 'Sorteios', ()=>{}, new UsuarioPublicidadePage()),
